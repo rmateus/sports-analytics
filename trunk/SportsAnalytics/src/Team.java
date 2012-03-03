@@ -22,7 +22,8 @@ public class Team {
 	 */
 	public static void rankTeams(Team[] teams){
 		for (int i=0; i < teams.length; i++){
-			teams[i].setOverallScore(.5*(Global.maxSeed - teams[i].getSeed()) + .5*teams[i].getRebounds());
+			//teams[i].setOverallScore(.5*(Global.maxSeed - teams[i].getSeed()) + .5*teams[i].getRebounds());
+			teams[i].setOverallScore(Global.maxSeed - teams[i].getSeed());
 		}
 	}
 	
