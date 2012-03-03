@@ -8,12 +8,17 @@ public class Team {
 	private double overallScore;// the score that they are ranked by
 	private int seed;		  	// seed in the tournament
 	private int rebounds;		// rebounds per game
+	private int winPercentage;	// win %
+	private int threePointsPerGame; // 3points/game
 	
-	public Team(String name, Icon pic, int seed, int rebs){
+	
+	public Team(String name, Icon pic, int seed, int rebs, int winPercentage, int threePointsPerGame){
 		this.name = name;
 		this.pic = pic;
 		this.seed = seed;
 		this.rebounds = rebs;
+		this.setWinPercentage(winPercentage);
+		this.setThreePointsPerGame(threePointsPerGame);
 	}
 	
 	/**
@@ -22,8 +27,8 @@ public class Team {
 	 */
 	public static void rankTeams(Team[] teams){
 		for (int i=0; i < teams.length; i++){
-			//teams[i].setOverallScore(.5*(Global.maxSeed - teams[i].getSeed()) + .5*teams[i].getRebounds());
-			teams[i].setOverallScore(Global.maxSeed - teams[i].getSeed());
+			teams[i].setOverallScore(.25*(Global.maxSeed - teams[i].getSeed()) + .25*teams[i].getRebounds() + .25*teams[i].getWinPercentage() + .25*teams[i].getThreePointsPerGame());
+			//teams[i].setOverallScore(Global.maxSeed - teams[i].getSeed());
 		}
 	}
 	
@@ -70,6 +75,22 @@ public class Team {
 
 	public void setOverallScore(double d) {
 		this.overallScore = d;
+	}
+
+	public int getWinPercentage() {
+		return winPercentage;
+	}
+
+	public void setWinPercentage(int winPercentage) {
+		this.winPercentage = winPercentage;
+	}
+
+	public int getThreePointsPerGame() {
+		return threePointsPerGame;
+	}
+
+	public void setThreePointsPerGame(int threePointsPerGame) {
+		this.threePointsPerGame = threePointsPerGame;
 	}
 
 }
