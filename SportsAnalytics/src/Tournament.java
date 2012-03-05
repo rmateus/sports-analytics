@@ -3,11 +3,15 @@ import java.applet.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
 public class Tournament extends Applet{
 
 		private Team[] teamArray;
+		//private JSlider sb = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
+		
+		
 		// The method that will be automatically called  when the applet is started 
 		public void init(){ 
 			resize(2000, 2000);
@@ -58,6 +62,8 @@ public class Tournament extends Applet{
 			semi1.drawGame(g, appW/2 + lineLength + rW , appH/2, rH, rW, spacing, lineLength);
 			semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 			champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
+			
+
 		}
 		
 		/**
