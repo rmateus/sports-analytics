@@ -12,13 +12,13 @@ public class Team {
 	private int threePointsPerGame; // 3points/game
 	
 	
-	public Team(String name, Icon pic, int seed, int rebs, int winPercentage, int threePointsPerGame){
+	public Team(String name, Icon pic, int seed, int rebs/*, int winPercentage, int threePointsPerGame*/){
 		this.name = name;
 		this.pic = pic;
 		this.seed = seed;
 		this.rebounds = rebs;
-		this.setWinPercentage(winPercentage);
-		this.setThreePointsPerGame(threePointsPerGame);
+		/*this.setWinPercentage(winPercentage);
+		this.setThreePointsPerGame(threePointsPerGame);*/
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class Team {
 	 */
 	public static void rankTeams(Team[] teams){
 		for (int i=0; i < teams.length; i++){
-			teams[i].setOverallScore(.25*(Global.maxSeed - teams[i].getSeed()) + .25*teams[i].getRebounds() + .25*teams[i].getWinPercentage() + .25*teams[i].getThreePointsPerGame());
+			teams[i].setOverallScore(.25*(Global.maxSeed - teams[i].getSeed()) + .25*teams[i].getRebounds()/* + .25*teams[i].getWinPercentage() + .25*teams[i].getThreePointsPerGame()*/);
 			//teams[i].setOverallScore(Global.maxSeed - teams[i].getSeed());
 		}
 	}

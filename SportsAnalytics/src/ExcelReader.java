@@ -34,7 +34,7 @@ public class ExcelReader {
 			//System.out.println(sheet.getCell(0,3).getContents());
 			
 			for (int i =2; i< sheet.getRows(); i++){
-				teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), null, Integer.parseInt(sheet.getCell(j+1,i).getContents()), Integer.parseInt(sheet.getCell(j+2,i).getContents()), Integer.parseInt(sheet.getCell(j+3,i).getContents()), Integer.parseInt(sheet.getCell(j+4,i).getContents()));
+				//teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), null, Integer.parseInt(sheet.getCell(j+1,i).getContents()), Integer.parseInt(sheet.getCell(j+2,i).getContents()), Integer.parseInt(sheet.getCell(j+3,i).getContents()), Integer.parseInt(sheet.getCell(j+4,i).getContents()));
 				j=0;
 			}
 			/*
