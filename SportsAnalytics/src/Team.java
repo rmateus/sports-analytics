@@ -10,7 +10,10 @@ public class Team {
 	private int rebounds;		// rebounds per game
 	private int winPercentage;	// win %
 	private int threePointsPerGame; // 3points/game
-	
+	static double seedWeight;
+	static double reboundsWeight;
+	static double winPercentgeWeight;
+	static double threePointsPerGameWeight;
 	
 	public Team(String name, Icon pic, int seed, int rebs/*, int winPercentage, int threePointsPerGame*/){
 		this.name = name;
@@ -27,7 +30,7 @@ public class Team {
 	 */
 	public static void rankTeams(Team[] teams){
 		for (int i=0; i < teams.length; i++){
-			teams[i].setOverallScore(.25*(Global.maxSeed - teams[i].getSeed()) + .25*teams[i].getRebounds()/* + .25*teams[i].getWinPercentage() + .25*teams[i].getThreePointsPerGame()*/);
+			teams[i].setOverallScore(seedWeight*(Global.maxSeed - teams[i].getSeed()) + reboundsWeight*teams[i].getRebounds()/* + winPercentageWeight*teams[i].getWinPercentage() + threePointsPerGameWeight*teams[i].getThreePointsPerGame()*/);
 			//teams[i].setOverallScore(Global.maxSeed - teams[i].getSeed());
 		}
 	}
