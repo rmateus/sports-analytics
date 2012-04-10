@@ -20,7 +20,7 @@ public class ExcelReader {
 		this.inputFile = inputFile;
 	}
 
-	public void read() throws IOException  {
+	public Team[] read() throws IOException  {
 		File inputWorkbook = new File(inputFile);
 		Workbook w;
 		try {
@@ -33,10 +33,16 @@ public class ExcelReader {
 			//System.out.println("Rows: " + sheet.getRows());
 			//System.out.println(sheet.getCell(0,3).getContents());
 			
-			for (int i =2; i< sheet.getRows(); i++){
-				//teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), null, Integer.parseInt(sheet.getCell(j+1,i).getContents()), Integer.parseInt(sheet.getCell(j+2,i).getContents()), Integer.parseInt(sheet.getCell(j+3,i).getContents()), Integer.parseInt(sheet.getCell(j+4,i).getContents()));
+			for (int i =2; i< 66; i++){
+				teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
+						Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
+						Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
+						Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
+						Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
+						Double.parseDouble(sheet.getCell(j+10,i).getContents()));
 				j=0;
 			}
+			return teamArr;
 			/*
 			int i=0;
 			while (teamArr[i+1]!=null && i<62){
@@ -45,11 +51,12 @@ public class ExcelReader {
 			}
 			System.out.println(teamArr[teamArr.length-1].toString());
 			*/
-			t.setTeamArray(teamArr);
-
+			//t.setTeamArray(teamArr);
+			
 		} catch (BiffException e) {
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public Tournament getT() {

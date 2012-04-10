@@ -102,7 +102,7 @@ public class StartScreen extends JFrame {
 		seedSliderLabel.setBounds(92, 127, 62, 23);
 		panel.add(seedSliderLabel);
 		
-		JLabel reboundsSliderLabel = new JLabel("Rebounds");
+		JLabel reboundsSliderLabel = new JLabel("Offensive Rebounds");
 		reboundsSliderLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		reboundsSliderLabel.setBounds(71, 194, 93, 23);
 		panel.add(reboundsSliderLabel);
@@ -115,10 +115,11 @@ public class StartScreen extends JFrame {
 		JButton btnSimulate = new JButton("Simulate");
 		btnSimulate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Team.winPercentgeWeight = winPercentageSlider.getValue()/100.0;
-				Team.seedWeight = seedSlider.getValue()/100.0;
-				Team.reboundsWeight = reboundsSlider.getValue()/100.0;
-				Team.threePointsPerGameWeight = threePointsPerGameSlider.getValue()/100.0;
+				Global.winPercentageWeight = winPercentageSlider.getValue()/100.0;
+				Global.seedWeight = seedSlider.getValue()/100.0;
+				Global.offensiveRebsWeight = reboundsSlider.getValue()/100.0;
+				Global.threePointsPercentageWeight = threePointsPerGameSlider.getValue()/100.0;
+				
 			}
 		});
 		btnSimulate.setBounds(170, 324, 89, 23);
