@@ -26,6 +26,7 @@ public class Tournament extends Applet{
 	// This overrides the empty Applet method, you can't called it "display" for example.
 
 
+
 	/**
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
@@ -64,6 +65,7 @@ public class Tournament extends Applet{
 
 
 	public void paint(Graphics g){ 
+		clear(g);
 		generateBracket(g);
 	}
 
@@ -99,19 +101,23 @@ public class Tournament extends Applet{
 		this.teamArray = teamArray;
 	}
 
+	public void clear(Graphics g){
+		g.clearRect(0, 0, 2000, 2000);
+	}
 	public void initArray(){
 
-		/*
+		
 			ExcelReader test = new ExcelReader(this);
 			test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
-				"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsExample.xls");
+				"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsAnalyticsProjectStatsData.xls");
 			try {
-				test.read();
+				teamArray = test.read();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 
+		/*
 		Team UNC = new Team("North Carolina", null, 1 , 30);
 		Team Duke = new Team("Duke", null, 16, 28);
 		Team SYR = new Team("Syracuse", null, 8, 15);
@@ -185,6 +191,7 @@ public class Tournament extends Applet{
 				MISS, VCU, IND, MINN, ECU, ND};
 		
 		teamArray = t;
+		*/
 	}
 }
 
