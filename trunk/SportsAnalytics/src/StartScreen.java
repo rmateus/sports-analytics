@@ -305,5 +305,32 @@ public class StartScreen extends JFrame {
 		steals.setMinorTickSpacing(10);
 		steals.setBounds(224, 455, 200, 23);
 		panel.add(steals);
+		
+		JButton help = new JButton("Help");
+		help.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Adjust each slider based on how important you think each stat is to \n" +
+						                           "a team's success, the left side of the slider meaning not important\n" +
+						                           "and the right side meaning extremely important. Then, simply select\n" +
+						                           "the season you want to simulate and click the Simulation button.");
+			
+			}
+		});
+		help.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		help.setBounds(0, 185, 67, 23);
+		panel.add(help);
+		
+		JButton about = new JButton("About");
+		about.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,"Created by Stephen Csukas, Derek Miller, Jeff Pansisi,o\n" +
+												   " Brandon Palmer, and Caleb Kirksey. [will add more to this]");
+
+			}
+		});
+		about.setHorizontalAlignment(SwingConstants.LEFT);
+		about.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		about.setBounds(360, 185, 74, 23);
+		panel.add(about);
 	}
 }
