@@ -77,8 +77,9 @@ public class StartScreen extends JFrame {
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panel);
 		panel.setLayout(null);
-		//CURRENTLY HARDCODED, need to figure out how to access from package
-		JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
+		getClass().getResource("src/bgp.jpg");
+		JLabel logo = new JLabel(new ImageIcon("src/bgp.jpg"));
+		//JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
 		logo.setBounds(0, 0, 440, 185);
 		panel.add(logo);
 		
