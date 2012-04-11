@@ -42,19 +42,8 @@ public class Team {
 		this.offensiveRebs = oRebs;
 	}
 	
-	/**
-	 * ranks the teams
-	 * @param teams
-	 */
-	public static void rankTeams(Team[] teams){
-		for (int i=0; i < teams.length; i++){
-			teams[i].setOverallScore((teams[i].getSeed()*Global.seedWeight)+(teams[i].getWinPercentage()*Global.winPercentageWeight)+(teams[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)+
-					(teams[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)+(teams[i].getOffensiveRebs()*Global.offensiveRebsWeight)+(teams[i].getDefensiveRebs()*Global.defensiveRebsWeight)+
-					(teams[i].getSteals()*Global.stealsWeight)+(teams[i].getBlocks()*Global.blocksWeight)+(teams[i].getPpg()*Global.ppgWeight)+(teams[i].getTurnovers()*Global.turnoversWeight));
-		}
-	}
-	
-	
+
+		
 	public String toString(){
 		return (this.name + " \tS:" +seed);
 	}

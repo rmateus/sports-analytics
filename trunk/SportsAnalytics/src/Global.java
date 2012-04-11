@@ -5,6 +5,19 @@ public class Global {
 	public static int maxSeed = 16;	
 	public static int sliderTotal = 100;
 	public static int season = 2012;
+	// maximums
+	public static double seedMax;
+	public static double winPercentageMax;
+	public static double fieldGoalPercentageMax;
+	public static double threePointsPercentageMax;
+	public static double offensiveRebsMax;
+	public static double defensiveRebsMax;
+	public static double stealsMax;
+	public static double blocksMax;
+	public static double ppgMax;
+	public static double turnoversMax;
+	
+	
 	
 	// input from sliders
 	public static double seedWeight;

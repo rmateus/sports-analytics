@@ -117,6 +117,10 @@ public class StartScreen extends JFrame {
 					
 					Global.seedWeight = steals.getValue()/100.0;
 					Global.blocksWeight = blocks.getValue()/100.0;
+					
+					
+					Tournament tourney = new Tournament();
+					tourney.repaint();
 				}
 			}
 		});

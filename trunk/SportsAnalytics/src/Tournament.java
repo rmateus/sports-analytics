@@ -3,38 +3,46 @@ import java.applet.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
 public class Tournament extends Applet{
 
 	
 	private Team[] teamArray;
-	//private JSlider sb = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
-
 
 	// The method that will be automatically called  when the applet is started 
 	public void init(){ 
 		resize(2000, 2000);
-		// It is required but does not need anything. 
 	} 
 	// This method gets called when the applet is terminated 
 	// That's when the user goes to another page or exits the browser. 
 	public void stop()  { 
-		// no actions needed here now. 
 	} 
-	// The standard method that you have to use to paint things on screen 
-	// This overrides the empty Applet method, you can't called it "display" for example.
 
+	// TODO delete when sliders work
+	public void initWeights(){
+		Global.seedWeight = 100;
+		Global.winPercentageWeight = 100;
+		Global.fieldGoalPercentageWeight = 100;
+		Global.threePointsPercentageWeight = 100;
+		Global.offensiveRebsWeight = 100;
+		Global.defensiveRebsWeight = 100;
+		Global.stealsWeight = 100;
+		Global.blocksWeight = 100;
+		Global.ppgWeight = 100;
+		Global.turnoversWeight = 100;
 
+	}
 
 	/**
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
 	 */
 	public void generateBracket(Graphics g){
+		initWeights(); //method only used for testing. 
 		initArray();
-		Team.rankTeams(teamArray);	// calculates the overall Rank of each team
+		setMaxes();
+		rankTeams();	// calculates the overall Rank of each team
 
 		Global.teamIndex = 0;
 		Game semi1 = InitializeTournament(teamArray);
@@ -60,8 +68,6 @@ public class Tournament extends Applet{
 		semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
 
-
-
 	}
 
 
@@ -70,6 +76,54 @@ public class Tournament extends Applet{
 		generateBracket(g);
 	}
 
+	/**
+	 * 
+	 */
+	public void setMaxes(){
+		Global.seedMax = 16;
+		Global.winPercentageMax = 0;
+		Global.fieldGoalPercentageMax = 0;
+		Global.threePointsPercentageMax = 0;
+		Global.offensiveRebsMax = 0;
+		Global.defensiveRebsMax = 0;
+		Global.stealsMax = 0;
+		Global.blocksMax = 0;
+		Global.ppgMax = 0;
+		Global.turnoversMax = 0;
+
+		for (int i =0; i < 64; i++){
+
+			if (teamArray[i].getWinPercentage() > Global.winPercentageMax){
+				Global.winPercentageMax = teamArray[i].getWinPercentage();
+			}
+			if (teamArray[i].getFieldGoalPercentage() > Global.fieldGoalPercentageMax){
+				Global.fieldGoalPercentageMax = teamArray[i].getFieldGoalPercentage();
+			}
+			if (teamArray[i].getThreePointsPercentage() > Global.threePointsPercentageMax){
+				Global.threePointsPercentageMax = teamArray[i].getThreePointsPercentage();
+			}
+			if (teamArray[i].getOffensiveRebs() > Global.offensiveRebsMax){
+				Global.offensiveRebsMax = teamArray[i].getOffensiveRebs();
+			}
+			if (teamArray[i].getDefensiveRebs() > Global.defensiveRebsMax){
+				Global.defensiveRebsMax = teamArray[i].getDefensiveRebs();
+			}
+			if (teamArray[i].getSteals() > Global.stealsMax){
+				Global.stealsMax = teamArray[i].getSteals();
+			}
+			if (teamArray[i].getBlocks() > Global.blocksMax){
+				Global.blocksMax = teamArray[i].getBlocks();
+			}
+			if (teamArray[i].getPpg() > Global.ppgMax){
+				Global.ppgMax = teamArray[i].getPpg();
+			}
+			if (teamArray[i].getTurnovers() > Global.turnoversMax){
+				Global.turnoversMax = teamArray[i].getTurnovers();
+			}
+		}
+
+
+	}
 
 
 
@@ -87,6 +141,24 @@ public class Tournament extends Applet{
 		return championship;
 	}
 
+	/**
+	 * ranks the teams
+	 * @param teams
+	 */
+	public void rankTeams(){
+		for (int i=0; i < teamArray.length; i++){
+			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight)/Global.maxSeed)+
+					((teamArray[i].getWinPercentage()*Global.winPercentageWeight)/Global.winPercentageMax)+
+					((teamArray[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)/Global.fieldGoalPercentageMax)+
+					((teamArray[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)/Global.threePointsPercentageMax)+
+					((teamArray[i].getOffensiveRebs()*Global.offensiveRebsWeight)/Global.offensiveRebsMax)+
+					((teamArray[i].getDefensiveRebs()*Global.defensiveRebsWeight)/Global.defensiveRebsMax)+
+					((teamArray[i].getSteals()*Global.stealsWeight)/Global.stealsMax)+
+					((teamArray[i].getBlocks()*Global.blocksWeight)/Global.blocksMax)+
+					((teamArray[i].getPpg()*Global.ppgWeight)/Global.ppgMax)+
+					((Global.turnoversMax - teamArray[i].getTurnovers())*Global.turnoversWeight)/Global.turnoversMax);
+		}
+	}
 	/**
 	 * getter for TeamArray
 	 * @return this.TeamArray
@@ -106,18 +178,24 @@ public class Tournament extends Applet{
 	public void clear(Graphics g){
 		g.clearRect(0, 0, 2000, 2000);
 	}
+
+	public void printStats(){
+		for (int i=0; i<teamArray.length;i++){
+
+		}
+
+	}
 	public void initArray(){
 
-		
-			ExcelReader test = new ExcelReader(this);
-			test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
+
+		ExcelReader test = new ExcelReader(this);
+		test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
 				"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsAnalyticsProjectStatsData.xls");
-			try {
-				teamArray = test.read();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			teamArray = test.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		/*
 		Team UNC = new Team("North Carolina", null, 1 , 30);
@@ -191,9 +269,9 @@ public class Tournament extends Applet{
 				MST, RICE, MICH, MARQ, WVU, RUT, PITT, PRNC, CAL, ARZ, AZST, COL, TAM,
 				MIZZ, WIS, ILL, IOWA, TROY, NCST, ORG, SDST, BUT, MURST, STAN, WASH, WASHST,
 				MISS, VCU, IND, MINN, ECU, ND};
-		
+
 		teamArray = t;
-		*/
+		 */
 	}
 }
 
