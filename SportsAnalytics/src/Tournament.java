@@ -8,6 +8,7 @@ import javax.swing.JSlider;
 @SuppressWarnings("serial")
 public class Tournament extends Applet{
 
+	
 	private Team[] teamArray;
 	//private JSlider sb = new JSlider(JSlider.HORIZONTAL, 0, 100, 0);
 

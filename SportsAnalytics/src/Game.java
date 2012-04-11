@@ -12,7 +12,6 @@ public class Game {
 
 	public Game(Game nextGame){
 		this.nextGame = nextGame;
-
 	}
 
 	/**
