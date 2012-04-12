@@ -1,27 +1,33 @@
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
 
 public class BracketGUI extends JPanel{
-	
+
 	private Team[] teamArray;
-	
+	private JButton back;
+	private final JPanel mainPanel;
+
 	public BracketGUI(JPanel mainPanel){
+		this.mainPanel = mainPanel;
 		Dimension d = new Dimension(2000,2000);
 		setPreferredSize(d);
 
 	}
-	
+
 	public void paint(Graphics g){
 		clear(g);
 		generateBracket(g);
 	}
-	
+
 	// TODO delete when sliders work
 	public void initWeights(){
 		Global.seedWeight = 100;
@@ -71,6 +77,18 @@ public class BracketGUI extends JPanel{
 		semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
 
+		back = new JButton();
+		back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CardLayout cl = (CardLayout) (mainPanel.getLayout());
+				cl.next(mainPanel);
+			}
+		});
+		back.setText("BACK");
+		back.setBounds(appW/2 - rW/2, appH-100, rW, rH);
+		this.add(back);
+		back.setVisible(true);
+		back.requestFocusInWindow();
 	}
 
 	/**
@@ -167,7 +185,7 @@ public class BracketGUI extends JPanel{
 
 		}
 	}
-	
+
 	public void initArray(){
 		ExcelReader test = new ExcelReader(this);
 		test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
@@ -178,7 +196,7 @@ public class BracketGUI extends JPanel{
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * getter for TeamArray
 	 * @return this.TeamArray
