@@ -31,7 +31,7 @@ public class ExcelReader {
 
 			int j=0;
 			int i;
-			Global.season = 2;
+			//Global.season = 2;
 			if (Global.season == 2012){
 				for (i=67; i< 131; i++){
 					teamArr[i-67] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),

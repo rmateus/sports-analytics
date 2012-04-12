@@ -31,6 +31,9 @@ public class Tournament extends JApplet{
 		mainPanel.add(ss, PANEL1);
 		mainPanel.add(b, PANEL2);
 		getContentPane().add(mainPanel);
+		this.setPreferredSize(new Dimension(2000,2000));
+		this.setMaximumSize(getPreferredSize()); // prevent growth
+		this.setMinimumSize(getPreferredSize()); // prevent shrink
 	
 	}
 
