@@ -1,23 +1,11 @@
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
-import javax.swing.JApplet;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -55,26 +43,11 @@ public class StartScreen extends JPanel {
 	/**
 	 * Launch the application.
 	 */
-/*	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartScreen frame = new StartScreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
+
 	/**
 	 * Create the frame.
 	 */
 	public StartScreen(final JPanel jp) {
-		//setPreferredSize(new Dimension(350, 500));
-		//setMinimumSize(new Dimension(350, 500));
-		//setMaximumSize(new Dimension(350, 500));
 		//setAlwaysOnTop(true);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
