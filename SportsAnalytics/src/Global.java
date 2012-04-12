@@ -4,7 +4,7 @@ public class Global {
 	public static int maxRound = 5; 
 	public static int maxSeed = 16;	
 	public static int sliderTotal = 100;
-	public static int season = 2012;
+	public static int season = 2011;
 	// maximums
 	public static double seedMax;
 	public static double winPercentageMax;
@@ -16,7 +16,6 @@ public class Global {
 	public static double blocksMax;
 	public static double ppgMax;
 	public static double turnoversMax;
-	
 	
 	
 	// input from sliders

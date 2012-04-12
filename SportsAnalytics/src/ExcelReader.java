@@ -15,7 +15,7 @@ public class ExcelReader {
 	public ExcelReader(Tournament t){
 		this.t = t;
 	}
-	
+
 	public void setInputFile(String inputFile) {
 		this.inputFile = inputFile;
 	}
@@ -28,19 +28,30 @@ public class ExcelReader {
 			// Get the first sheet
 			Sheet sheet = w.getSheet(0);
 			Team[] teamArr = new Team[64];
-			
+
 			int j=0;
-			//System.out.println("Rows: " + sheet.getRows());
-			//System.out.println(sheet.getCell(0,3).getContents());
-			
-			for (int i =2; i< 66; i++){
-				teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
-						Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
-						Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
-						Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
-						Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
-						Double.parseDouble(sheet.getCell(j+10,i).getContents()));
-				j=0;
+			int i;
+			if (Global.season == 2012){
+				for (i=67; i< 131; i++){
+					teamArr[i-67] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+10,i).getContents()));
+					j=0;
+				}
+			}
+			else {
+				for (i=2; i< 66; i++){
+					teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+10,i).getContents()));
+					j=0;
+				}
 			}
 			return teamArr;
 			/*
@@ -50,9 +61,9 @@ public class ExcelReader {
 				i++;
 			}
 			System.out.println(teamArr[teamArr.length-1].toString());
-			*/
+			 */
 			//t.setTeamArray(teamArr);
-			
+
 		} catch (BiffException e) {
 			e.printStackTrace();
 		}
