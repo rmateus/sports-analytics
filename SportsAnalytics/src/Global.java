@@ -29,7 +29,5 @@ public class Global {
 	public static double blocksWeight;
 	public static double ppgWeight;
 	public static double turnoversWeight;
-	
-	
-	
+
 }

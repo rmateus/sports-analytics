@@ -18,8 +18,6 @@ public class BracketGUI extends JPanel{
 
 	public BracketGUI(JPanel mainPanel){
 		this.mainPanel = mainPanel;
-		Dimension d = new Dimension(2000,2000);
-		setPreferredSize(d);
 
 	}
 
@@ -76,19 +74,23 @@ public class BracketGUI extends JPanel{
 		semi1.drawGame(g, appW/2 + lineLength + rW , appH/2, rH, rW, spacing, lineLength);
 		semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
-
-		back = new JButton();
+		if (back!=null){
+			remove(back);
+		}
+		back = new JButton("BACK");
+		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				remove(back);
 				CardLayout cl = (CardLayout) (mainPanel.getLayout());
 				cl.next(mainPanel);
 			}
 		});
-		back.setText("BACK");
 		back.setBounds(appW/2 - rW/2, appH-100, rW, rH);
 		this.add(back);
 		back.setVisible(true);
 		back.requestFocusInWindow();
+
 	}
 
 	/**
@@ -188,8 +190,10 @@ public class BracketGUI extends JPanel{
 
 	public void initArray(){
 		ExcelReader test = new ExcelReader(this);
-		test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
-				"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsAnalyticsProjectStatsData.xls");
+		//test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
+		//		"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsAnalyticsProjectStatsData.xls");
+
+		test.setInputFile("SportsAnalyticsProjectStatsData.xls");
 		try {
 			teamArray = test.read();
 		} catch (IOException e) {
