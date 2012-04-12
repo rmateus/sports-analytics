@@ -9,11 +9,11 @@ import jxl.read.biff.BiffException;
 
 public class ExcelReader {
 
-	private Tournament t;
+	private BracketGUI t;
 	private String inputFile;
 
-	public ExcelReader(Tournament t){
-		this.t = t;
+	public ExcelReader(BracketGUI bracketGUI){
+		this.t = bracketGUI;
 	}
 
 	public void setInputFile(String inputFile) {
@@ -31,6 +31,7 @@ public class ExcelReader {
 
 			int j=0;
 			int i;
+			Global.season = 2;
 			if (Global.season == 2012){
 				for (i=67; i< 131; i++){
 					teamArr[i-67] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
@@ -69,16 +70,6 @@ public class ExcelReader {
 		}
 		return null;
 	}
-
-	public Tournament getT() {
-		return t;
-	}
-
-	public void setT(Tournament t) {
-		this.t = t;
-	}
-
-
 
 }
 

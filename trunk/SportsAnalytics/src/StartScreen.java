@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 
@@ -8,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonModel;
 import javax.swing.ImageIcon;
+import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.JSlider;
@@ -34,9 +37,8 @@ import javax.swing.ButtonGroup;
  * @author Stephen Csukas
  */
 
-public class StartScreen extends JFrame {
+public class StartScreen extends JPanel {
 
-	private JPanel panel;
 	private final ButtonGroup year = new ButtonGroup();
 	private final JSlider seed;
 	private final JSlider pointsPerGame;
@@ -53,7 +55,7 @@ public class StartScreen extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -65,24 +67,26 @@ public class StartScreen extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
-	public StartScreen() {
+	public StartScreen(final JPanel jp) {
+		//setPreferredSize(new Dimension(350, 500));
+		//setMinimumSize(new Dimension(350, 500));
+		//setMaximumSize(new Dimension(350, 500));
 		//setAlwaysOnTop(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 600);
-		panel = new JPanel();
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(panel);
-		panel.setLayout(null);
+		setBorder(new EmptyBorder(5, 5, 5, 5));
+		//setContentPane(panel);
+		setLayout(null);
 		getClass().getResource("src/bgp.jpg");
 		JLabel logo = new JLabel(new ImageIcon("src/bgp.jpg"));
 		//JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
 		logo.setBounds(0, 0, 440, 185);
-		panel.add(logo);
-		
+		add(logo);
+		setVisible(true);
 		//create Simulate button and event handler
 		JButton btnSimulate = new JButton("Simulate");
 		btnSimulate.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -90,6 +94,9 @@ public class StartScreen extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//if 2010 is selected, display error
+				CardLayout cl = (CardLayout) (jp.getLayout());
+				cl.next(jp);
+				
 				if(year2010.isSelected()){
 					JOptionPane.showMessageDialog(null,"Sorry, this year is currently unavailable. Please select a different year.");
 				}
@@ -125,99 +132,99 @@ public class StartScreen extends JFrame {
 			}
 		});
 		btnSimulate.setBounds(256, 501, 151, 43);
-		panel.add(btnSimulate);	
+		add(btnSimulate);	
 		
 		//create radio buttons for selecting the year
 		year2011 = new JRadioButton("2011");
 		year.add(year2011);
 		year2011.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		year2011.setBounds(88, 521, 65, 23);
-		panel.add(year2011);
+		add(year2011);
 		
 		year2012 = new JRadioButton("2012");
 		year2012.setSelected(true);
 		year.add(year2012);
 		year2012.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		year2012.setBounds(155, 521, 65, 23);
-		panel.add(year2012);
+		add(year2012);
 		
 		year2010 = new JRadioButton("2010");
 		year.add(year2010);
 		year2010.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		year2010.setBounds(20, 521, 65, 23);
-		panel.add(year2010);
+		add(year2010);
 		
 		//create all labels
 		JLabel seedSliderLabel = new JLabel("3 Point Percentage");
 		seedSliderLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		seedSliderLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		seedSliderLabel.setBounds(10, 340, 200, 23);
-		panel.add(seedSliderLabel);
+		add(seedSliderLabel);
 		
 		JLabel Seedlbl = new JLabel("Seed");
 		Seedlbl.setHorizontalAlignment(SwingConstants.CENTER);
 		Seedlbl.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		Seedlbl.setBounds(20, 251, 181, 23);
-		panel.add(Seedlbl);
+		add(Seedlbl);
 		
 		JLabel threePointsPerGameSliderLabel = new JLabel("Points Per Game");
 		threePointsPerGameSliderLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		threePointsPerGameSliderLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		threePointsPerGameSliderLabel.setBounds(10, 296, 200, 23);
-		panel.add(threePointsPerGameSliderLabel);
+		add(threePointsPerGameSliderLabel);
 		
 		JLabel lblSelectYear = new JLabel("Select Year");
 		lblSelectYear.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSelectYear.setBounds(70, 496, 111, 23);
-		panel.add(lblSelectYear);
+		add(lblSelectYear);
 		
 		JLabel lblSelectStatWeights = new JLabel("Select Stat Weights");
 		lblSelectStatWeights.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectStatWeights.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblSelectStatWeights.setBounds(0, 211, 440, 23);
-		panel.add(lblSelectStatWeights);
+		add(lblSelectStatWeights);
 	
 		JLabel lblOffensiveRebounds = new JLabel("Offensive Rebounds");
 		lblOffensiveRebounds.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOffensiveRebounds.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblOffensiveRebounds.setBounds(10, 387, 200, 23);
-		panel.add(lblOffensiveRebounds);
+		add(lblOffensiveRebounds);
 		
 		JLabel lblTurnovers = new JLabel("Turnovers");
 		lblTurnovers.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTurnovers.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblTurnovers.setBounds(220, 296, 204, 23);
-		panel.add(lblTurnovers);
+		add(lblTurnovers);
 		
 		JLabel lblFgPercentage = new JLabel("FG Percentage");
 		lblFgPercentage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFgPercentage.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblFgPercentage.setBounds(220, 340, 204, 23);
-		panel.add(lblFgPercentage);
+		add(lblFgPercentage);
 		
 		JLabel lblWinRebounds = new JLabel("Defensive Rebounds");
 		lblWinRebounds.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWinRebounds.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblWinRebounds.setBounds(224, 387, 200, 23);
-		panel.add(lblWinRebounds);
+		add(lblWinRebounds);
 		
 		JLabel lblSteals = new JLabel("Steals");
 		lblSteals.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSteals.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblSteals.setBounds(224, 432, 200, 23);
-		panel.add(lblSteals);
+		add(lblSteals);
 		
 		JLabel lblBlocks = new JLabel("Blocks");
 		lblBlocks.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBlocks.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblBlocks.setBounds(42, 432, 131, 23);
-		panel.add(lblBlocks);
+		add(lblBlocks);
 		
 		JLabel lblWinPercentage = new JLabel("Win Percentage");
 		lblWinPercentage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWinPercentage.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblWinPercentage.setBounds(224, 251, 200, 23);
-		panel.add(lblWinPercentage);
+		add(lblWinPercentage);
 		
 		//Created the 10 sliders, each will adjust the weight of the respective stat
 		pointsPerGame = new JSlider();
@@ -227,7 +234,7 @@ public class StartScreen extends JFrame {
 		pointsPerGame.setName("Seed");
 		pointsPerGame.setMinorTickSpacing(10);
 		pointsPerGame.setBounds(10, 319, 200, 23);
-		panel.add(pointsPerGame);
+		add(pointsPerGame);
 		
 		threePointPercentage = new JSlider();
 		threePointPercentage.setSnapToTicks(true);
@@ -236,7 +243,7 @@ public class StartScreen extends JFrame {
 		threePointPercentage.setName("Seed");
 		threePointPercentage.setMinorTickSpacing(10);
 		threePointPercentage.setBounds(10, 363, 200, 23);
-		panel.add(threePointPercentage);
+		add(threePointPercentage);
 		
 		seed = new JSlider();
 		seed.setSnapToTicks(true);
@@ -245,7 +252,7 @@ public class StartScreen extends JFrame {
 		seed.setName("Seed");
 		seed.setMinorTickSpacing(10);
 		seed.setBounds(10, 274, 200, 23);
-		panel.add(seed);
+		add(seed);
 		
 		offensiveRebounds = new JSlider();
 		offensiveRebounds.setSnapToTicks(true);
@@ -254,7 +261,7 @@ public class StartScreen extends JFrame {
 		offensiveRebounds.setName("Seed");
 		offensiveRebounds.setMinorTickSpacing(10);
 		offensiveRebounds.setBounds(10, 410, 200, 23);
-		panel.add(offensiveRebounds);
+		add(offensiveRebounds);
 		
 		winPercentage = new JSlider();
 		winPercentage.setSnapToTicks(true);
@@ -263,7 +270,7 @@ public class StartScreen extends JFrame {
 		winPercentage.setName("Seed");
 		winPercentage.setMinorTickSpacing(10);
 		winPercentage.setBounds(224, 274, 200, 23);
-		panel.add(winPercentage);
+		add(winPercentage);
 		
 		FGPercentage = new JSlider();
 		FGPercentage.setSnapToTicks(true);
@@ -272,7 +279,7 @@ public class StartScreen extends JFrame {
 		FGPercentage.setName("Seed");
 		FGPercentage.setMinorTickSpacing(10);
 		FGPercentage.setBounds(220, 363, 200, 23);
-		panel.add(FGPercentage);
+		add(FGPercentage);
 		
 		turnovers = new JSlider();
 		turnovers.setSnapToTicks(true);
@@ -281,7 +288,7 @@ public class StartScreen extends JFrame {
 		turnovers.setName("Seed");
 		turnovers.setMinorTickSpacing(10);
 		turnovers.setBounds(224, 319, 200, 23);
-		panel.add(turnovers);
+		add(turnovers);
 		
 		defensiveRebounds = new JSlider();
 		defensiveRebounds.setSnapToTicks(true);
@@ -290,7 +297,7 @@ public class StartScreen extends JFrame {
 		defensiveRebounds.setName("Seed");
 		defensiveRebounds.setMinorTickSpacing(10);
 		defensiveRebounds.setBounds(224, 410, 200, 23);
-		panel.add(defensiveRebounds);
+		add(defensiveRebounds);
 		
 		blocks = new JSlider();
 		blocks.setSnapToTicks(true);
@@ -299,7 +306,7 @@ public class StartScreen extends JFrame {
 		blocks.setName("Seed");
 		blocks.setMinorTickSpacing(10);
 		blocks.setBounds(10, 455, 200, 23);
-		panel.add(blocks);
+		add(blocks);
 		
 		steals = new JSlider();
 		steals.setSnapToTicks(true);
@@ -308,7 +315,7 @@ public class StartScreen extends JFrame {
 		steals.setName("Seed");
 		steals.setMinorTickSpacing(10);
 		steals.setBounds(224, 455, 200, 23);
-		panel.add(steals);
+		add(steals);
 		
 		JButton help = new JButton("Help");
 		help.addActionListener(new ActionListener() {
@@ -322,7 +329,7 @@ public class StartScreen extends JFrame {
 		});
 		help.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		help.setBounds(0, 185, 67, 23);
-		panel.add(help);
+		add(help);
 		
 		JButton about = new JButton("About");
 		about.addActionListener(new ActionListener() {
@@ -335,6 +342,6 @@ public class StartScreen extends JFrame {
 		about.setHorizontalAlignment(SwingConstants.LEFT);
 		about.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		about.setBounds(360, 185, 74, 23);
-		panel.add(about);
+		add(about);
 	}
 }
