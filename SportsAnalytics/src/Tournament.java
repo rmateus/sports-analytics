@@ -1,9 +1,5 @@
 
-import java.applet.*; 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JApplet;
 import javax.swing.JPanel;
 

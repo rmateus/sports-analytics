@@ -39,7 +39,7 @@ public class ExcelReader {
 							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
-							Double.parseDouble(sheet.getCell(j+10,i).getContents()));
+							Double.parseDouble(sheet.getCell(j+10,i).getContents()), Integer.parseInt(sheet.getCell(j+11,i).getContents()));
 					j=0;
 				}
 			}
@@ -50,7 +50,7 @@ public class ExcelReader {
 							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
-							Double.parseDouble(sheet.getCell(j+10,i).getContents()));
+							Double.parseDouble(sheet.getCell(j+10,i).getContents()), Integer.parseInt(sheet.getCell(j+11,i).getContents()));
 					j=0;
 				}
 			}

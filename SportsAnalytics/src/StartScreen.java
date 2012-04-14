@@ -1,4 +1,7 @@
 import java.awt.CardLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
@@ -54,8 +57,9 @@ public class StartScreen extends JPanel {
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);
-		getClass().getResource("src/bgp.jpg");
-		JLabel logo = new JLabel(new ImageIcon("src/bgp.jpg"));
+				
+		//getClass().getResource("src/bgp.jpg");;
+		JLabel logo = new JLabel(new ImageIcon("bgp.jpg"));
 		//JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
 		logo.setBounds(0, 0, 440, 185);
 		add(logo);
@@ -101,6 +105,9 @@ public class StartScreen extends JPanel {
 					
 					Tournament tourney = new Tournament();
 					tourney.repaint();
+				//BracketGUI bg = new BracketGUI(jp);
+				//bg.findBestCombo();
+				//System.out.println(Global.bestCombination);
 				}
 			}
 		});
@@ -318,4 +325,6 @@ public class StartScreen extends JPanel {
 		about.setBounds(360, 185, 74, 23);
 		add(about);
 	}
+	
+
 }

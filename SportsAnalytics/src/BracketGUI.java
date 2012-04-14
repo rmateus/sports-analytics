@@ -25,8 +25,50 @@ public class BracketGUI extends JPanel{
 		clear(g);
 		generateBracket(g);
 	}
-
-	// TODO delete when sliders work
+	
+	
+	public void findBestCombo(){
+		Global.bestNumberOfCorrectGames =0;
+		Global.numberOfCorrectGames =0;
+		for (int a = 0; a <= 100; a++){
+			Global.seedWeight = a;
+			for(int b = 0; b <= 100; b++){
+				Global.winPercentageWeight = b;
+				for (int c = 0; c <= 100; c++){
+					Global.fieldGoalPercentageWeight = c;
+					for (int d = 0; d <= 100; d++){
+						Global.threePointsPercentageWeight = d;
+						for (int e = 0; e <= 100; e++){
+							Global.offensiveRebsWeight = e;
+							for (int f = 0; f <= 100; f++){
+								Global.defensiveRebsWeight = f;
+								for (int g = 0; g <= 100; g++){
+									Global.stealsWeight = g;
+									for (int h = 0; h <= 100; h++){
+										Global.blocksWeight = h;
+										for (int i = 0; i <= 100; i++){
+											Global.ppgWeight =h;
+											for (int j = 0; j <= 100; j++){
+												Global.turnoversWeight =j;
+												repaint();
+												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
+													Global.bestNumberOfCorrectGames = Global.numberOfCorrectGames;
+													Global.bestCombination = new int[] {a,b,c,d,e,f,g,h,i,j};	//Correct???
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+/*
 	public void initWeights(){
 		Global.seedWeight = 100;
 		Global.winPercentageWeight = 100;
@@ -40,13 +82,14 @@ public class BracketGUI extends JPanel{
 		Global.turnoversWeight = 100;
 
 	}
-
+*/
 	/**
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
 	 */
 	public void generateBracket(Graphics g){
 		//initWeights(); //method only used for testing. 
+		Global.numberOfCorrectGames =0;
 		initArray();
 		setMaxes();
 		rankTeams();	// calculates the overall Rank of each team
@@ -142,8 +185,6 @@ public class BracketGUI extends JPanel{
 
 	}
 
-
-
 	/**
 	 * Recursively creates and links all 
 	 * the Games in the Tournament
@@ -216,4 +257,5 @@ public class BracketGUI extends JPanel{
 	public void setTeamArray(Team[] teamArray){
 		this.teamArray = teamArray;
 	}
+	
 }

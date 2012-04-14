@@ -5,6 +5,11 @@ public class Global {
 	public static int maxSeed = 16;	
 	public static int sliderTotal = 100;
 	public static int season = 2011;
+	public static int numberOfGames = 64; // counting the winner rectangle as a game
+	public static int numberOfCorrectGames;	//
+	public static int bestNumberOfCorrectGames;
+	public static int[] bestCombination; // the ten weights
+	
 	// maximums
 	public static double seedMax;
 	public static double winPercentageMax;
