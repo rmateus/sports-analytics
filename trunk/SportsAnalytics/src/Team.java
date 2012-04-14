@@ -15,12 +15,13 @@ public class Team {
 	private double blocks;	//blocks/Game
 	private double ppg; //points/game
 	private double turnovers; // turnovers/Game
+	private int roundsPlayed; //rounds played in the tournament
 
 
 	
 	public Team(String name, int seed, double winPercentage, double fieldGoalPercentage, 
 			double threePointsPercentage, double offensiveRebs, double defensiveRebs, double steals,
-			double blocks, double ppg, double turnovers){
+			double blocks, double ppg, double turnovers, int roundsPlayed){
 
 		this.name = name;		// team name
 		this.seed = seed;		  	// seed in the tournament
@@ -33,15 +34,9 @@ public class Team {
 		this.blocks = blocks;	//blocks/Game
 		this.ppg = ppg; //points/game
 		this.turnovers = turnovers; // turnovers/Game
+		this.roundsPlayed = roundsPlayed;
 		
 	}
-	
-	public Team(String name, Icon i, int seed, int oRebs){
-		this.name = name;		// team name
-		this.seed = seed;		  	// seed in the tournament
-		this.offensiveRebs = oRebs;
-	}
-	
 
 		
 	public String toString(){
@@ -142,6 +137,14 @@ public class Team {
 
 	public void setTurnovers(double turnovers) {
 		this.turnovers = turnovers;
+	}
+
+	public int getRoundsPlayed() {
+		return roundsPlayed;
+	}
+
+	public void setRoundsPlayed(int roundsPlayed) {
+		this.roundsPlayed = roundsPlayed;
 	}
 
 	

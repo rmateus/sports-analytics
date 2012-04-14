@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 
 
@@ -53,15 +54,34 @@ public class Game {
 	 */
 	public void drawChamp(Graphics g, int x, int y, int height, int width, int lineLength){
 		g.drawRect(x, y, width, height);
+		
+		setResultColor(team1, this.getRound(), g);
 		g.drawString(this.team1.getSeed()+ " " +this.team1.getName(), x, y);
+		setResultColor(team2, this.getRound(), g);
 		g.drawString(this.team2.getSeed()+ " " +this.team2.getName(), x, y+height);
-
+		
+		g.setColor(Color.BLACK);
 		g.drawLine(x + width, y+ (height/2), x + width + lineLength, y + (height/2));
 		g.drawLine(x, y + (height/2), x - lineLength, y + (height/2));
 
 		g.drawLine(x + width/2, y, x+width/2, y-2*lineLength);
 		g.drawRect(x, y-2*lineLength-height, width, height);
+		setResultColor(this.getWinner(), this.getRound(), g);
 		g.drawString(this.getWinner().getSeed() +" " + this.getWinner().getName(), x, y-2*lineLength-height);
+	}
+
+	private void setResultColor(Team team, int round, Graphics g){
+		
+		if(round == 4){
+			g.setColor(Color.BLACK);
+		}
+		else if(team.getRoundsPlayed() < (5-round)){
+			g.setColor(Color.RED);
+		}
+		else {
+			Global.numberOfCorrectGames++ ;
+			g.setColor(Color.GREEN);
+		}
 	}
 
 	/**
@@ -76,14 +96,19 @@ public class Game {
 	 */
 	public void drawGame(Graphics g, int x, int y, int height, int width, int spacing, int lineLength){ 
 		//right half of bracket
+		
 		g.drawRect(x,y,width,height);
+		
 		if(this.team1 != null){
+			setResultColor(team1, this.getRound(), g);
 			g.drawString(this.team1.getSeed()+ " " +this.team1.getName(), x, y);
 		}
 
 		if(this.team2 != null){
+			setResultColor(team2, this.getRound(), g);
 			g.drawString(this.team2.getSeed()+ " " +this.team2.getName(), x, y + height);
 		}
+		g.setColor(Color.BLACK);
 
 		int round = Global.maxRound - this.getRound() -2; // should be a 1. the two allows it to fit on the screen
 		if(this.prevGame2 != null){
@@ -110,12 +135,15 @@ public class Game {
 	public void drawGameLeft(Graphics g, int x, int y, int height, int width, int spacing, int lineLength){ 
 		g.drawRect(x,y,width,height);
 		if(this.team1 != null){
+			setResultColor(team1, this.getRound(), g);
 			g.drawString(this.team1.getSeed()+ " " +this.team1.getName(), x, y);
 		}
 
 		if(this.team2 != null){
+			setResultColor(team2, this.getRound(), g);
 			g.drawString(this.team2.getSeed()+ " " +this.team2.getName(), x, y + height);
 		}
+		g.setColor(Color.BLACK);
 		int round = Global.maxRound - this.getRound() -2; // should be a 1. the two allows it to fit on the screen
 		if(this.prevGame2 != null){
 			g.drawLine(x,y+(height/2),x-lineLength,y+(height/2)+(spacing+height*((int)Math.pow(2, round))));
