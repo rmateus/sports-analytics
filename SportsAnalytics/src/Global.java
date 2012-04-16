@@ -8,7 +8,7 @@ public class Global {
 	public static int numberOfGames = 64; // counting the winner rectangle as a game
 	public static int numberOfCorrectGames;	//
 	public static int bestNumberOfCorrectGames;
-	public static int[] bestCombination; // the ten weights
+	public static int[] bestCombination = new int[] {0,0,0,0,0,0,0,0,0,0}; // the ten weights
 	
 	// maximums
 	public static double seedMax;

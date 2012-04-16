@@ -40,6 +40,10 @@ public class Game {
 			this.nextGame.setTeam1(winner);		
 		else if (this.nextGame.getTeam2() == null)
 			this.nextGame.setTeam2(winner);
+		// for calculating best possible combination of weights
+		if(this.winner.getRoundsPlayed() <= (5-this.getRound())){
+			Global.numberOfCorrectGames++;
+		}
 		return;
 	}
 
@@ -79,7 +83,7 @@ public class Game {
 			g.setColor(Color.RED);
 		}
 		else {
-			Global.numberOfCorrectGames++ ;
+			//Global.numberOfCorrectGames++ ;
 			g.setColor(Color.GREEN);
 		}
 	}
@@ -157,54 +161,6 @@ public class Game {
 
 	}
 
-	public Team getTeam1() {
-		return team1;
-	}
-
-	public void setTeam1(Team team1) {
-		this.team1 = team1;
-	}
-
-	public Team getTeam2() {
-		return team2;
-	}
-
-	public void setTeam2(Team team2) {
-		this.team2 = team2;
-	}
-
-	public Team getWinner() {
-		return winner;
-	}
-
-	public void setWinner(Team winner) {
-		this.winner = winner;
-	}
-
-	public Game getNextGame() {
-		return nextGame;
-	}
-
-	public void setNextGame(Game nextGame) {
-		this.nextGame = nextGame;
-	}
-
-	public Game getPrevGame1() {
-		return prevGame1;
-	}
-
-	public void setPrevGame1(Game prevGame1) {
-		this.prevGame1 = prevGame1;
-	}
-
-	public Game getPrevGame2() {
-		return prevGame2;
-	}
-
-	public void setPrevGame2(Game prevGame2) {
-		this.prevGame2 = prevGame2;
-	}
-
 	/**
 	 * tells what round the game is in
 	 * @return the round the game is inn, where zero is the Championship
@@ -252,10 +208,59 @@ public class Game {
 			this.prevGame2.playTournament();
 			this.playGame();
 		}
-		else
+		else{
 			this.playGame();
+		}
 	}
 
+
+	public Team getTeam1() {
+		return team1;
+	}
+
+	public void setTeam1(Team team1) {
+		this.team1 = team1;
+	}
+
+	public Team getTeam2() {
+		return team2;
+	}
+
+	public void setTeam2(Team team2) {
+		this.team2 = team2;
+	}
+
+	public Team getWinner() {
+		return winner;
+	}
+
+	public void setWinner(Team winner) {
+		this.winner = winner;
+	}
+
+	public Game getNextGame() {
+		return nextGame;
+	}
+
+	public void setNextGame(Game nextGame) {
+		this.nextGame = nextGame;
+	}
+
+	public Game getPrevGame1() {
+		return prevGame1;
+	}
+
+	public void setPrevGame1(Game prevGame1) {
+		this.prevGame1 = prevGame1;
+	}
+
+	public Game getPrevGame2() {
+		return prevGame2;
+	}
+
+	public void setPrevGame2(Game prevGame2) {
+		this.prevGame2 = prevGame2;
+	}
 
 
 

@@ -23,37 +23,48 @@ public class BracketGUI extends JPanel{
 
 	public void paint(Graphics g){
 		clear(g);
+		//findBestCombo();
 		generateBracket(g);
 	}
-	
-	
+
+
 	public void findBestCombo(){
 		Global.bestNumberOfCorrectGames =0;
 		Global.numberOfCorrectGames =0;
-		for (int a = 0; a <= 100; a++){
+		for (int a = 0; a <= 100; a+=50){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b++){
+			for(int b = 0; b <= 100; b+=50){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c++){
+				for (int c = 0; c <= 100; c+=50){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d++){
+					for (int d = 0; d <= 100; d+=50){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e++){
+						for (int e = 0; e <= 100; e+=50){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f++){
+							for (int f = 0; f <= 100; f+=50){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g++){
+								for (int g = 0; g <= 100; g+=50){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h++){
+									for (int h = 0; h <= 100; h+=50){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i++){
+										for (int i = 0; i <= 100; i+=50){
 											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j++){
+											for (int j = 0; j <= 100; j+=50){
 												Global.turnoversWeight =j;
-												repaint();
+												playTournament2();
 												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
 													Global.bestNumberOfCorrectGames = Global.numberOfCorrectGames;
-													Global.bestCombination = new int[] {a,b,c,d,e,f,g,h,i,j};	//Correct???
+													Global.bestCombination[0] = a;
+													Global.bestCombination[1] = b;
+													Global.bestCombination[2] = c;
+													Global.bestCombination[3] = d;
+													Global.bestCombination[4] = e;
+													Global.bestCombination[5] = f;
+													Global.bestCombination[6] = g;
+													Global.bestCombination[7] = h;
+													Global.bestCombination[8] = i;
+													Global.bestCombination[9] = j;
+													System.out.println("new best!");
 												}
 											}
 										}
@@ -65,10 +76,41 @@ public class BracketGUI extends JPanel{
 				}
 			}
 		}
+		Global.seedWeight = Global.bestCombination[0];
+		Global.winPercentageWeight = Global.bestCombination[1];
+		Global.fieldGoalPercentageWeight = Global.bestCombination[2];
+		Global.threePointsPercentageWeight = Global.bestCombination[3];
+		Global.offensiveRebsWeight = Global.bestCombination[4];
+		Global.defensiveRebsWeight = Global.bestCombination[5];
+		Global.stealsWeight =Global.bestCombination[6];
+		Global.blocksWeight = Global.bestCombination[7];
+		Global.ppgWeight =  Global.bestCombination[8];
+		Global.turnoversWeight = Global.bestCombination[9];
 	}
-	
-	
-/*
+
+	public void playTournament2(){
+		Global.numberOfCorrectGames =0;
+		initArray();
+		setMaxes();
+		rankTeams();	// calculates the overall Rank of each team
+
+		Global.teamIndex = 0;
+		Game semi1 = InitializeTournament(teamArray);
+		Game semi2 = InitializeTournament(teamArray);
+
+		semi1.playTournament();
+		semi2.playTournament();
+
+		Game champ = new Game(null);
+		champ.setTeam1(semi1.getWinner());
+		champ.setTeam2(semi2.getWinner());
+		champ.playGame();
+	}
+
+
+
+
+	/*
 	public void initWeights(){
 		Global.seedWeight = 100;
 		Global.winPercentageWeight = 100;
@@ -82,7 +124,7 @@ public class BracketGUI extends JPanel{
 		Global.turnoversWeight = 100;
 
 	}
-*/
+	 */
 	/**
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
@@ -120,7 +162,8 @@ public class BracketGUI extends JPanel{
 		if (back!=null){
 			remove(back);
 		}
-		back = new JButton("BACK");
+		//back = new JButton("BACK");
+		back = new JButton(Global.numberOfCorrectGames + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -257,5 +300,5 @@ public class BracketGUI extends JPanel{
 	public void setTeamArray(Team[] teamArray){
 		this.teamArray = teamArray;
 	}
-	
+
 }
