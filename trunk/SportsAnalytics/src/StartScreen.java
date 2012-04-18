@@ -51,9 +51,8 @@ public class StartScreen extends JPanel {
 	 * Create the frame.
 	 */
 	public StartScreen(final JPanel jp) {
-		//setAlwaysOnTop(true);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 600);
+		setBounds(100, 100, 440, 600);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);
@@ -61,6 +60,8 @@ public class StartScreen extends JPanel {
 		//getClass().getResource("src/bgp.jpg");;
 		JLabel logo = new JLabel(new ImageIcon("bgp.jpg"));
 		//JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
+		
+		
 		logo.setBounds(0, 0, 440, 185);
 		add(logo);
 		setVisible(true);
@@ -209,6 +210,7 @@ public class StartScreen extends JPanel {
 		
 		//Created the 10 sliders, each will adjust the weight of the respective stat
 		pointsPerGame = new JSlider();
+		pointsPerGame.setValue(0);
 		pointsPerGame.setSnapToTicks(true);
 		pointsPerGame.setPaintTicks(true);
 		pointsPerGame.setPaintLabels(true);
@@ -218,6 +220,7 @@ public class StartScreen extends JPanel {
 		add(pointsPerGame);
 		
 		threePointPercentage = new JSlider();
+		threePointPercentage.setValue(0);
 		threePointPercentage.setSnapToTicks(true);
 		threePointPercentage.setPaintTicks(true);
 		threePointPercentage.setPaintLabels(true);
@@ -227,6 +230,7 @@ public class StartScreen extends JPanel {
 		add(threePointPercentage);
 		
 		seed = new JSlider();
+		seed.setValue(0);
 		seed.setSnapToTicks(true);
 		seed.setPaintTicks(true);
 		seed.setPaintLabels(true);
@@ -236,6 +240,7 @@ public class StartScreen extends JPanel {
 		add(seed);
 		
 		offensiveRebounds = new JSlider();
+		offensiveRebounds.setValue(0);
 		offensiveRebounds.setSnapToTicks(true);
 		offensiveRebounds.setPaintTicks(true);
 		offensiveRebounds.setPaintLabels(true);
@@ -245,6 +250,7 @@ public class StartScreen extends JPanel {
 		add(offensiveRebounds);
 		
 		winPercentage = new JSlider();
+		winPercentage.setValue(0);
 		winPercentage.setSnapToTicks(true);
 		winPercentage.setPaintTicks(true);
 		winPercentage.setPaintLabels(true);
@@ -254,15 +260,17 @@ public class StartScreen extends JPanel {
 		add(winPercentage);
 		
 		FGPercentage = new JSlider();
+		FGPercentage.setValue(0);
 		FGPercentage.setSnapToTicks(true);
 		FGPercentage.setPaintTicks(true);
 		FGPercentage.setPaintLabels(true);
 		FGPercentage.setName("Seed");
 		FGPercentage.setMinorTickSpacing(10);
-		FGPercentage.setBounds(220, 363, 200, 23);
+		FGPercentage.setBounds(224, 363, 200, 23);
 		add(FGPercentage);
 		
 		turnovers = new JSlider();
+		turnovers.setValue(0);
 		turnovers.setSnapToTicks(true);
 		turnovers.setPaintTicks(true);
 		turnovers.setPaintLabels(true);
@@ -272,6 +280,7 @@ public class StartScreen extends JPanel {
 		add(turnovers);
 		
 		defensiveRebounds = new JSlider();
+		defensiveRebounds.setValue(0);
 		defensiveRebounds.setSnapToTicks(true);
 		defensiveRebounds.setPaintTicks(true);
 		defensiveRebounds.setPaintLabels(true);
@@ -281,6 +290,7 @@ public class StartScreen extends JPanel {
 		add(defensiveRebounds);
 		
 		blocks = new JSlider();
+		blocks.setValue(0);
 		blocks.setSnapToTicks(true);
 		blocks.setPaintTicks(true);
 		blocks.setPaintLabels(true);
@@ -290,6 +300,7 @@ public class StartScreen extends JPanel {
 		add(blocks);
 		
 		steals = new JSlider();
+		steals.setValue(0);
 		steals.setSnapToTicks(true);
 		steals.setPaintTicks(true);
 		steals.setPaintLabels(true);
@@ -304,26 +315,36 @@ public class StartScreen extends JPanel {
 				JOptionPane.showMessageDialog(null,"Adjust each slider based on how important you think each stat is to \n" +
 						                           "a team's success, the left side of the slider meaning not important\n" +
 						                           "and the right side meaning extremely important. Then, simply select\n" +
-						                           "the season you want to simulate and click the Simulation button.");
-			
+						                           "the season you want to simulate and click the Simulation button.");		
 			}
 		});
 		help.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		help.setBounds(0, 185, 67, 23);
 		add(help);
 		
-		JButton about = new JButton("About");
-		about.addActionListener(new ActionListener() {
+		//Resets all sliders to 0
+		JButton reset = new JButton("Reset");
+		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Created by Stephen Csukas, Derek Miller, Jeff Pansisi,o\n" +
-												   " Brandon Palmer, and Caleb Kirksey. [will add more to this]");
+				//JOptionPane.showMessageDialog(null,"Created by Stephen Csukas, Derek Miller, Jeff Pansisi,o\n" +
+				//								   " Brandon Palmer, and Caleb Kirksey. [will add more to this]");
 
+				seed.setValue(0);
+				winPercentage.setValue(0);
+				pointsPerGame.setValue(0);
+			    turnovers.setValue(0);
+				FGPercentage.setValue(0);
+				threePointPercentage.setValue(0);
+				offensiveRebounds.setValue(0);
+				defensiveRebounds.setValue(0);
+				steals.setValue(0);
+				blocks.setValue(0);
+				
 			}
 		});
-		about.setHorizontalAlignment(SwingConstants.LEFT);
-		about.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		about.setBounds(360, 185, 74, 23);
-		add(about);
+		reset.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		reset.setBounds(366, 185, 74, 23);
+		add(reset);
 	}
 	
 
