@@ -9,6 +9,8 @@ public class Global {
 	public static int numberOfCorrectGames;	//
 	public static int bestNumberOfCorrectGames;
 	public static int[] bestCombination = new int[] {0,0,0,0,0,0,0,0,0,0}; // the ten weights
+	public static int bestScore;
+	public static int currentScore;
 	
 	// maximums
 	public static double seedMax;

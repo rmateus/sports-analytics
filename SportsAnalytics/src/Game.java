@@ -43,6 +43,7 @@ public class Game {
 		// for calculating best possible combination of weights
 		if(this.winner.getRoundsPlayed() <= (5-this.getRound())){
 			Global.numberOfCorrectGames++;
+			Global.currentScore += this.getValue();
 		}
 		return;
 	}
@@ -262,7 +263,9 @@ public class Game {
 		this.prevGame2 = prevGame2;
 	}
 
-
+	public int getValue() {
+		return (int) (320/(Math.pow(2,this.getRound())));
+	}
 
 }
 

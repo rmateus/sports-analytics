@@ -1,9 +1,11 @@
 import java.awt.CardLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -50,16 +52,17 @@ public class StartScreen extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public StartScreen(final JPanel jp) {
+	public StartScreen(final JPanel jp, ImageIcon pic) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 600);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);
 				
-		//getClass().getResource("src/bgp.jpg");;
-		JLabel logo = new JLabel(new ImageIcon("bgp.jpg"));
-		//JLabel logo = new JLabel(new ImageIcon("C:\\Users\\Stephen\\Documents\\_School\\SA\\bgp.jpg"));
+		
+		//JLabel logo = new JLabel(new ImageIcon("bgp.jpg"));
+		JLabel logo = new JLabel(pic);
+
 		
 		
 		logo.setBounds(0, 0, 440, 185);
