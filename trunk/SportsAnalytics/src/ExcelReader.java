@@ -10,18 +10,19 @@ import jxl.read.biff.BiffException;
 public class ExcelReader {
 
 	private BracketGUI t;
-	private String inputFile;
+	private File inputFile;
 
 	public ExcelReader(BracketGUI bracketGUI){
 		this.t = bracketGUI;
 	}
-
-	public void setInputFile(String inputFile) {
+	
+	public void setInputFile(File inputFile) {
 		this.inputFile = inputFile;
 	}
 
 	public Team[] read() throws IOException  {
-		File inputWorkbook = new File(inputFile);
+		//File inputWorkbook = new File(inputFile);
+		File inputWorkbook = inputFile;
 		Workbook w;
 		try {
 			w = Workbook.getWorkbook(inputWorkbook);

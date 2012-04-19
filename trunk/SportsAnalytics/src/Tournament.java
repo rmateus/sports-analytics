@@ -1,5 +1,10 @@
 
 import java.awt.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JPanel;
 
@@ -9,8 +14,8 @@ public class Tournament extends JApplet{
 	public static final String PANEL2 = "Panel 2";
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainPanel = new JPanel(cardlayout);
-
-
+	private ImageIcon pic;
+	private File file;
 
 	public void init(){ 
 		resize(2000, 2000);
@@ -22,8 +27,20 @@ public class Tournament extends JApplet{
 	} 
 
 	private void createGUI() {
-		BracketGUI b = new BracketGUI(mainPanel);
-		StartScreen ss = new StartScreen(mainPanel);
+		pic = new ImageIcon();
+		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
+		//file = new File();
+		/*URL excel;
+		try {
+			excel = new URL(getCodeBase(), "SportsAnalyticsProjectStatsData");
+			file = new File(excel.getFile()); //new File(getCodeBase(), "SportsAnalyticsProjectStatsData"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+*/
+		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
+		StartScreen ss = new StartScreen(mainPanel, pic);
 		mainPanel.add(ss, PANEL1);
 		mainPanel.add(b, PANEL2);
 		getContentPane().add(mainPanel);

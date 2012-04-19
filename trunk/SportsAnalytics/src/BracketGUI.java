@@ -1,12 +1,14 @@
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+ 
 
 
 
@@ -15,44 +17,50 @@ public class BracketGUI extends JPanel{
 	private Team[] teamArray;
 	private JButton back;
 	private final JPanel mainPanel;
+	private File excelFile;
 
-	public BracketGUI(JPanel mainPanel){
+	public BracketGUI(JPanel mainPanel/*, File f*/){
 		this.mainPanel = mainPanel;
+		//this.excelFile = f;
 
 	}
 
 	public void paint(Graphics g){
 		clear(g);
 		//findBestCombo();
+		findBestWeightedCombo();
 		generateBracket(g);
 	}
 
 
 	public void findBestCombo(){
-		Global.bestNumberOfCorrectGames =0;
+		Global.bestNumberOfCorrectGames =42;
 		Global.numberOfCorrectGames =0;
-		for (int a = 0; a <= 100; a+=50){
+		Global.bestCombination =  new int[] {0, 0, 10, 0, 0, 0, 100, 0, 100, 0};
+		initArray();
+		setMaxes();
+		for (int a = 30; a <= 100; a+=10){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b+=50){
+			for(int b = 20; b <= 100; b+=10){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c+=50){
+				for (int c = 30; c <= 100; c+=10){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d+=50){
+					for (int d = 90; d <= 100; d+=10){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e+=50){
+						for (int e = 30; e <= 100; e+=10){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f+=50){
+							for (int f = 60; f <= 100; f+=10){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g+=50){
+								for (int g = 40; g <= 100; g+=10){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h+=50){
+									for (int h = 70; h <= 100; h+=10){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i+=50){
+										for (int i = 0; i <= 100; i+=10){
 											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j+=50){
+											for (int j = 30; j <= 100; j+=10){
 												Global.turnoversWeight =j;
 												playTournament2();
-												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
+												if (Global.numberOfCorrectGames >= Global.bestNumberOfCorrectGames){
 													Global.bestNumberOfCorrectGames = Global.numberOfCorrectGames;
 													Global.bestCombination[0] = a;
 													Global.bestCombination[1] = b;
@@ -90,8 +98,7 @@ public class BracketGUI extends JPanel{
 
 	public void playTournament2(){
 		Global.numberOfCorrectGames =0;
-		initArray();
-		setMaxes();
+		Global.currentScore =0;
 		rankTeams();	// calculates the overall Rank of each team
 
 		Global.teamIndex = 0;
@@ -109,6 +116,69 @@ public class BracketGUI extends JPanel{
 
 
 
+	public void findBestWeightedCombo(){
+		Global.bestScore = 0;
+		Global.currentScore = 0;
+		Global.bestCombination =  new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		initArray();
+		setMaxes();
+		for (int a = 0; a <= 100; a+=50){
+			Global.seedWeight = a;
+			for(int b = 0; b <= 100; b+=50){
+				Global.winPercentageWeight = b;
+				for (int c = 0; c <= 100; c+=50){
+					Global.fieldGoalPercentageWeight = c;
+					for (int d = 0; d <= 100; d+=50){
+						Global.threePointsPercentageWeight = d;
+						for (int e = 0; e <= 100; e+=50){
+							Global.offensiveRebsWeight = e;
+							for (int f = 0; f <= 100; f+=50){
+								Global.defensiveRebsWeight = f;
+								for (int g = 0; g <= 100; g+=50){
+									Global.stealsWeight = g;
+									for (int h = 0; h <= 100; h+=50){
+										Global.blocksWeight = h;
+										for (int i = 0; i <= 100; i+=50){
+											Global.ppgWeight =h;
+											for (int j = 0; j <= 100; j+=50){
+												Global.turnoversWeight =j;
+												playTournament2();
+												if (Global.currentScore > Global.bestScore){
+													Global.bestScore = Global.currentScore;
+													Global.bestCombination[0] = a;
+													Global.bestCombination[1] = b;
+													Global.bestCombination[2] = c;
+													Global.bestCombination[3] = d;
+													Global.bestCombination[4] = e;
+													Global.bestCombination[5] = f;
+													Global.bestCombination[6] = g;
+													Global.bestCombination[7] = h;
+													Global.bestCombination[8] = i;
+													Global.bestCombination[9] = j;
+													System.out.println("new best!");
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Global.seedWeight = Global.bestCombination[0];
+		Global.winPercentageWeight = Global.bestCombination[1];
+		Global.fieldGoalPercentageWeight = Global.bestCombination[2];
+		Global.threePointsPercentageWeight = Global.bestCombination[3];
+		Global.offensiveRebsWeight = Global.bestCombination[4];
+		Global.defensiveRebsWeight = Global.bestCombination[5];
+		Global.stealsWeight =Global.bestCombination[6];
+		Global.blocksWeight = Global.bestCombination[7];
+		Global.ppgWeight =  Global.bestCombination[8];
+		Global.turnoversWeight = Global.bestCombination[9];
+		
+	}
 
 	/*
 	public void initWeights(){
@@ -163,7 +233,8 @@ public class BracketGUI extends JPanel{
 			remove(back);
 		}
 		//back = new JButton("BACK");
-		back = new JButton(Global.numberOfCorrectGames + "");
+		//back = new JButton(Global.numberOfCorrectGames + "");
+		back = new JButton(Global.bestScore + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -274,10 +345,14 @@ public class BracketGUI extends JPanel{
 
 	public void initArray(){
 		ExcelReader test = new ExcelReader(this);
-		//test.setInputFile("C:" + File.separator+ "Users" +File.separator+ "Jeff" +File.separator+ 
-		//		"workspace" +File.separator+ "SportsAnalytics" +File.separator+ "SportsAnalyticsProjectStatsData.xls");
-
-		test.setInputFile("SportsAnalyticsProjectStatsData.xls");
+		/*if (this.excelFile == null){
+			test.setInputFile(new File("SportsAnalyticsProjectStatsData.xls"));
+		}
+		else{
+			test.setInputFile(this.excelFile);
+		}*/
+		this.excelFile = new File("SportsAnalyticsProjectStatsData.xls");
+		test.setInputFile(this.excelFile);
 		try {
 			teamArray = test.read();
 		} catch (IOException e) {
