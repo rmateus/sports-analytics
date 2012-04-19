@@ -32,7 +32,6 @@ public class ExcelReader {
 
 			int j=0;
 			int i;
-			//Global.season = 2;
 			if (Global.season == 2012){
 				for (i=67; i< 131; i++){
 					teamArr[i-67] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
@@ -56,15 +55,6 @@ public class ExcelReader {
 				}
 			}
 			return teamArr;
-			/*
-			int i=0;
-			while (teamArr[i+1]!=null && i<62){
-				System.out.println(teamArr[i].toString());
-				i++;
-			}
-			System.out.println(teamArr[teamArr.length-1].toString());
-			 */
-			//t.setTeamArray(teamArr);
 
 		} catch (BiffException e) {
 			e.printStackTrace();

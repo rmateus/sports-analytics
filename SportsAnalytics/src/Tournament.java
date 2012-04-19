@@ -1,9 +1,6 @@
 
 import java.awt.*;
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JPanel;
@@ -15,6 +12,7 @@ public class Tournament extends JApplet{
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainPanel = new JPanel(cardlayout);
 	private ImageIcon pic;
+	private Image background; 
 	private File file;
 
 	public void init(){ 
@@ -29,6 +27,8 @@ public class Tournament extends JApplet{
 	private void createGUI() {
 		pic = new ImageIcon();
 		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
+		background = getImage(getCodeBase(), "bgp.jpg");
+		
 		//file = new File();
 		/*URL excel;
 		try {
@@ -39,12 +39,16 @@ public class Tournament extends JApplet{
 			e.printStackTrace();
 		}
 */
+		
 		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
-		StartScreen ss = new StartScreen(mainPanel, pic);
+		StartScreen ss = new StartScreen(mainPanel, pic, background);
+		
 		mainPanel.add(ss, PANEL1);
 		mainPanel.add(b, PANEL2);
 		getContentPane().add(mainPanel);
 		this.setPreferredSize(new Dimension(2000,2000));
+		setBackground(Color.ORANGE);
+		setForeground(Color.BLUE);
 		this.setMaximumSize(getPreferredSize()); // prevent growth
 		this.setMinimumSize(getPreferredSize()); // prevent shrink
 	

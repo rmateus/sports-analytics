@@ -1,11 +1,11 @@
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
@@ -30,6 +30,7 @@ import javax.swing.ButtonGroup;
  * @author Stephen Csukas
  */
 
+@SuppressWarnings("serial")
 public class StartScreen extends JPanel {
 
 	private final ButtonGroup year = new ButtonGroup();
@@ -49,16 +50,20 @@ public class StartScreen extends JPanel {
 	 * Launch the application.
 	 */
 
+	
 	/**
 	 * Create the frame.
 	 */
-	public StartScreen(final JPanel jp, ImageIcon pic) {
+	public StartScreen(final JPanel jp, ImageIcon pic, Image background) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 600);
+		setPreferredSize(new Dimension(440,600));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);
-				
+		//setOpaque(true);
+		//setBackground(Color.ORANGE);
+		//setForeground(Color.BLUE);
 		
 		//JLabel logo = new JLabel(new ImageIcon("bgp.jpg"));
 		JLabel logo = new JLabel(pic);
@@ -75,8 +80,7 @@ public class StartScreen extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				//if 2010 is selected, display error
-				CardLayout cl = (CardLayout) (jp.getLayout());
-				cl.next(jp);
+				
 				
 				if(year2010.isSelected()){
 					JOptionPane.showMessageDialog(null,"Sorry, this year is currently unavailable. Please select a different year.");
@@ -103,15 +107,17 @@ public class StartScreen extends JPanel {
 					Global.offensiveRebsWeight = offensiveRebounds.getValue()/100.0;
 					Global.defensiveRebsWeight = defensiveRebounds.getValue()/100.0;
 					
-					Global.seedWeight = steals.getValue()/100.0;
+					Global.stealsWeight = steals.getValue()/100.0;
 					Global.blocksWeight = blocks.getValue()/100.0;
+
+					
 					
 					
 					Tournament tourney = new Tournament();
 					tourney.repaint();
-				//BracketGUI bg = new BracketGUI(jp);
-				//bg.findBestCombo();
-				//System.out.println(Global.bestCombination);
+
+					CardLayout cl = (CardLayout) (jp.getLayout());
+					cl.next(jp);
 				}
 			}
 		});

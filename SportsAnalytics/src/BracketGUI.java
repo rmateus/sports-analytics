@@ -1,7 +1,6 @@
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -12,6 +11,7 @@ import javax.swing.JPanel;
 
 
 
+@SuppressWarnings("serial")
 public class BracketGUI extends JPanel{
 
 	private Team[] teamArray;
@@ -28,7 +28,7 @@ public class BracketGUI extends JPanel{
 	public void paint(Graphics g){
 		clear(g);
 		//findBestCombo();
-		findBestWeightedCombo();
+		//findBestWeightedCombo();
 		generateBracket(g);
 	}
 
@@ -113,8 +113,6 @@ public class BracketGUI extends JPanel{
 		champ.setTeam2(semi2.getWinner());
 		champ.playGame();
 	}
-
-
 
 	public void findBestWeightedCombo(){
 		Global.bestScore = 0;
@@ -201,7 +199,7 @@ public class BracketGUI extends JPanel{
 	 */
 	public void generateBracket(Graphics g){
 		//initWeights(); //method only used for testing. 
-		Global.numberOfCorrectGames =0;
+		//Global.numberOfCorrectGames =0;
 		initArray();
 		setMaxes();
 		rankTeams();	// calculates the overall Rank of each team
@@ -232,9 +230,9 @@ public class BracketGUI extends JPanel{
 		if (back!=null){
 			remove(back);
 		}
-		//back = new JButton("BACK");
+		back = new JButton("BACK");
 		//back = new JButton(Global.numberOfCorrectGames + "");
-		back = new JButton(Global.bestScore + "");
+		//back = new JButton(Global.bestScore + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -319,7 +317,7 @@ public class BracketGUI extends JPanel{
 	 */
 	public void rankTeams(){
 		for (int i=0; i < teamArray.length; i++){
-			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight)/Global.maxSeed)+
+			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight))+
 					((teamArray[i].getWinPercentage()*Global.winPercentageWeight)/Global.winPercentageMax)+
 					((teamArray[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)/Global.fieldGoalPercentageMax)+
 					((teamArray[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)/Global.threePointsPercentageMax)+
