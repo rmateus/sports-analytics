@@ -41,7 +41,7 @@ public class Game {
 		else if (this.nextGame.getTeam2() == null)
 			this.nextGame.setTeam2(winner);
 		// for calculating best possible combination of weights
-		if(this.winner.getRoundsPlayed() <= (5-this.getRound())){
+		if(this.winner.getRoundsPlayed() >= (5-this.getRound())){
 			Global.numberOfCorrectGames++;
 			Global.currentScore += this.getValue();
 		}
@@ -164,7 +164,7 @@ public class Game {
 
 	/**
 	 * tells what round the game is in
-	 * @return the round the game is inn, where zero is the Championship
+	 * @return the round the game is in, where zero is the Championship
 	 */
 	public int getRound(){
 		int i =0;
