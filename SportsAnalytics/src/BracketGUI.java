@@ -28,7 +28,7 @@ public class BracketGUI extends JPanel{
 	public void paint(Graphics g){
 		clear(g);
 		Global.numberOfCorrectGames =0;
-		//findBestCombo();
+		findBestCombo();
 		//findBestWeightedCombo();
 		generateBracket(g);
 	}
@@ -40,25 +40,25 @@ public class BracketGUI extends JPanel{
 		Global.bestCombination =  new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		initArray();
 		setMaxes();
-		for (int a = 0; a <= 100; a+=10){
+		for (int a = 0; a <= 100; a+=25){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b+=10){
+			for(int b = 0; b <= 100; b+=25){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c+=10){
+				for (int c = 0; c <= 100; c+=25){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d+=10){
+					for (int d = 0; d <= 100; d+=25){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e+=10){
+						for (int e = 0; e <= 100; e+=25){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f+=10){
+							for (int f = 0; f <= 100; f+=25){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g+=10){
+								for (int g = 0; g <= 100; g+=25){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h+=10){
+									for (int h = 0; h <= 100; h+=25){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i+=10){
+										for (int i = 0; i <= 100; i+=25){
 											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j+=10){
+											for (int j = 0; j <= 100; j+=25){
 												Global.turnoversWeight =j;
 												playTournament2();
 												if (Global.numberOfCorrectGames >= Global.bestNumberOfCorrectGames){
