@@ -42,7 +42,7 @@ public class Game {
 			this.nextGame.setTeam2(winner);
 		// for calculating best possible combination of weights
 		if(this.winner.getRoundsPlayed() >= (5-this.getRound())){
-			//Global.numberOfCorrectGames++;
+			Global.numberOfCorrectGames++;
 			//Global.currentScore += this.getValue();
 		}
 		return;
@@ -84,7 +84,7 @@ public class Game {
 			g.setColor(Color.RED);
 		}
 		else {
-			Global.numberOfCorrectGames++ ;
+			//Global.numberOfCorrectGames++ ; TODO un comment when not running algorithm
 			g.setColor(Color.GREEN);
 		}
 	}
