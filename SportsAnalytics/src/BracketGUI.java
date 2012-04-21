@@ -27,6 +27,7 @@ public class BracketGUI extends JPanel{
 
 	public void paint(Graphics g){
 		clear(g);
+		Global.numberOfCorrectGames =0;
 		//findBestCombo();
 		//findBestWeightedCombo();
 		generateBracket(g);
@@ -34,30 +35,30 @@ public class BracketGUI extends JPanel{
 
 
 	public void findBestCombo(){
-		Global.bestNumberOfCorrectGames =42;
+		Global.bestNumberOfCorrectGames =0;
 		Global.numberOfCorrectGames =0;
-		Global.bestCombination =  new int[] {0, 0, 10, 0, 0, 0, 100, 0, 100, 0};
+		Global.bestCombination =  new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		initArray();
 		setMaxes();
-		for (int a = 30; a <= 100; a+=10){
+		for (int a = 0; a <= 100; a+=10){
 			Global.seedWeight = a;
-			for(int b = 20; b <= 100; b+=10){
+			for(int b = 0; b <= 100; b+=10){
 				Global.winPercentageWeight = b;
-				for (int c = 30; c <= 100; c+=10){
+				for (int c = 0; c <= 100; c+=10){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 90; d <= 100; d+=10){
+					for (int d = 0; d <= 100; d+=10){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 30; e <= 100; e+=10){
+						for (int e = 0; e <= 100; e+=10){
 							Global.offensiveRebsWeight = e;
-							for (int f = 60; f <= 100; f+=10){
+							for (int f = 0; f <= 100; f+=10){
 								Global.defensiveRebsWeight = f;
-								for (int g = 40; g <= 100; g+=10){
+								for (int g = 0; g <= 100; g+=10){
 									Global.stealsWeight = g;
-									for (int h = 70; h <= 100; h+=10){
+									for (int h = 0; h <= 100; h+=10){
 										Global.blocksWeight = h;
 										for (int i = 0; i <= 100; i+=10){
 											Global.ppgWeight =h;
-											for (int j = 30; j <= 100; j+=10){
+											for (int j = 0; j <= 100; j+=10){
 												Global.turnoversWeight =j;
 												playTournament2();
 												if (Global.numberOfCorrectGames >= Global.bestNumberOfCorrectGames){
@@ -72,7 +73,17 @@ public class BracketGUI extends JPanel{
 													Global.bestCombination[7] = h;
 													Global.bestCombination[8] = i;
 													Global.bestCombination[9] = j;
-													System.out.println("new best!");
+													System.out.println("new best!  = " + Global.bestNumberOfCorrectGames);
+													System.out.println(Global.bestCombination[0]+", "+
+															Global.bestCombination[1]+", "+
+															Global.bestCombination[2]+", "+
+															Global.bestCombination[3]+", "+
+															Global.bestCombination[4]+", "+
+															Global.bestCombination[5]+", "+
+															Global.bestCombination[6]+", "+
+															Global.bestCombination[7]+", "+
+															Global.bestCombination[8]+", "+
+															Global.bestCombination[9]+", ");
 												}
 											}
 										}
@@ -230,8 +241,8 @@ public class BracketGUI extends JPanel{
 		if (back!=null){
 			remove(back);
 		}
-		back = new JButton("BACK");
-		//back = new JButton(Global.numberOfCorrectGames + "");
+		//back = new JButton("BACK");
+		back = new JButton(Global.numberOfCorrectGames + "");
 		//back = new JButton(Global.bestScore + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
