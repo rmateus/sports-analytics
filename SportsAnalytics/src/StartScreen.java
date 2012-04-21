@@ -126,7 +126,6 @@ public class StartScreen extends JPanel {
 		
 		//create radio buttons for selecting the year
 		year2011 = new JRadioButton("2011");
-		year2011.setSelected(true); //TODO remove this line
 		year.add(year2011);
 		year2011.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		year2011.setBounds(88, 521, 65, 23);
@@ -135,6 +134,7 @@ public class StartScreen extends JPanel {
 		year2012 = new JRadioButton("2012");
 		//year2012.setSelected(true);	//TODO uncomment
 		year.add(year2012);
+		year2012.setSelected(true); 
 		year2012.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		year2012.setBounds(155, 521, 65, 23);
 		add(year2012);

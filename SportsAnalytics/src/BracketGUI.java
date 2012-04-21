@@ -27,7 +27,6 @@ public class BracketGUI extends JPanel{
 
 	public void paint(Graphics g){
 		clear(g);
-		Global.numberOfCorrectGames =0;
 		findBestCombo();
 		//findBestWeightedCombo();
 		generateBracket(g);
@@ -40,28 +39,28 @@ public class BracketGUI extends JPanel{
 		Global.bestCombination =  new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		initArray();
 		setMaxes();
-		for (int a = 0; a <= 100; a+=25){
+		for (int a = 0; a <= 100; a+=50){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b+=25){
+			for(int b = 0; b <= 100; b+=50){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c+=25){
+				for (int c = 0; c <= 100; c+=50){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d+=25){
+					for (int d = 0; d <= 100; d+=50){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e+=25){
+						for (int e = 0; e <= 100; e+=50){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f+=25){
+							for (int f = 0; f <= 100; f+=50){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g+=25){
+								for (int g = 0; g <= 100; g+=50){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h+=25){
+									for (int h = 0; h <= 100; h+=50){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i+=25){
+										for (int i = 0; i <= 100; i+=50){
 											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j+=25){
+											for (int j = 0; j <= 100; j+=50){
 												Global.turnoversWeight =j;
 												playTournament2();
-												if (Global.numberOfCorrectGames >= Global.bestNumberOfCorrectGames){
+												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
 													Global.bestNumberOfCorrectGames = Global.numberOfCorrectGames;
 													Global.bestCombination[0] = a;
 													Global.bestCombination[1] = b;
@@ -208,9 +207,9 @@ public class BracketGUI extends JPanel{
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
 	 */
-	public void generateBracket(Graphics g){
-		//initWeights(); //method only used for testing. 
-		//Global.numberOfCorrectGames =0;
+	public void generateBracket(Graphics g){ 	
+		Global.numberOfCorrectGames =0;
+		Global.currentScore =0;
 		initArray();
 		setMaxes();
 		rankTeams();	// calculates the overall Rank of each team

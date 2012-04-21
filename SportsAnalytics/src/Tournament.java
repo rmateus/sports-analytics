@@ -42,7 +42,6 @@ public class Tournament extends JApplet{
 		
 		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
 		StartScreen ss = new StartScreen(mainPanel, pic, background);
-		
 		mainPanel.add(ss, PANEL1);
 		mainPanel.add(b, PANEL2);
 		getContentPane().add(mainPanel);

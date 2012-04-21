@@ -41,8 +41,9 @@ public class Game {
 		else if (this.nextGame.getTeam2() == null)
 			this.nextGame.setTeam2(winner);
 		// for calculating best possible combination of weights
-		if(this.winner.getRoundsPlayed() >= (5-this.getRound())){
+		if(this.winner.getRoundsPlayed() >= (Global.maxRound-this.getRound())+1){
 			Global.numberOfCorrectGames++;
+			//System.out.println("round "+getRound()+" winner = " +winner);
 			//Global.currentScore += this.getValue();
 		}
 		return;
@@ -84,7 +85,7 @@ public class Game {
 			g.setColor(Color.RED);
 		}
 		else {
-			//Global.numberOfCorrectGames++ ; TODO un comment when not running algorithm
+			Global.numberOfCorrectGames++ ; //TODO un comment when not running algorithm
 			g.setColor(Color.GREEN);
 		}
 	}
