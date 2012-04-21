@@ -57,7 +57,7 @@ public class StartScreen extends JPanel {
 	public StartScreen(final JPanel jp, ImageIcon pic, Image background) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 600);
-		setPreferredSize(new Dimension(440,600));
+		setPreferredSize(new Dimension(440, 600));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);

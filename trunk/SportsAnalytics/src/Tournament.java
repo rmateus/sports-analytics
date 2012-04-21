@@ -42,9 +42,37 @@ public class Tournament extends JApplet{
 		
 		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
 		StartScreen ss = new StartScreen(mainPanel, pic, background);
-		mainPanel.add(ss, PANEL1);
+		
+		JPanel test = new JPanel();
+		test.setLayout(new BorderLayout());
+		test.add(BorderLayout.CENTER, ss);
+		JPanel westPanel = new JPanel();
+		JPanel eastPanel = new JPanel();
+		westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 539 ,600));
+		//System.out.println(this.getBounds());
+		eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 539,600));
+		//westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440 ,600));
+		//System.out.println(this.getBounds());
+		//eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440   ,600));
+		eastPanel.setBackground(Color.ORANGE);
+		westPanel.setBackground(Color.ORANGE);
+		
+		
+		test.add(BorderLayout.EAST,eastPanel);
+		test.add(BorderLayout.WEST,westPanel);
+		
+		
+		//main.setLayout(new BorderLayout(2000,2000));
+		//getContentPane().add(main);
+		//mainScreen.add(BorderLayout.CENTER, ss);
+		//mainScreen.add(BorderLayout.WEST, new JPanel());
+		
+		
+		mainPanel.add(test, PANEL1);
 		mainPanel.add(b, PANEL2);
+		//main.add(BorderLayout.CENTER, mainPanel);
 		getContentPane().add(mainPanel);
+		
 		this.setPreferredSize(new Dimension(2000,2000));
 		setBackground(Color.ORANGE);
 		setForeground(Color.BLUE);
