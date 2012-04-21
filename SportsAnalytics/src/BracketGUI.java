@@ -27,7 +27,7 @@ public class BracketGUI extends JPanel{
 
 	public void paint(Graphics g){
 		clear(g);
-		findBestCombo();
+		//findBestCombo();
 		//findBestWeightedCombo();
 		generateBracket(g);
 	}
