@@ -17,7 +17,7 @@ public class Tournament extends JApplet{
 	private File file;
 
 	public void init(){ 
-		resize(2000, 2000);
+		resize(1400,850);
 		createGUI();
 	} 
 
@@ -50,11 +50,11 @@ public class Tournament extends JApplet{
 		test.add(BorderLayout.CENTER, ss);
 		JPanel westPanel = new JPanel();
 		JPanel eastPanel = new JPanel();
-		westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 539 ,600));
+		westPanel.setPreferredSize(new Dimension(this.getWidth()/2-pic.getIconWidth()/2 ,600));
 		//System.out.println(this.getBounds());
-		eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 539,600));
+		eastPanel.setPreferredSize(new Dimension(this.getWidth()/2-pic.getIconWidth()/2 ,600));
 		//westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440 ,600));
-		//System.out.println(this.getBounds());
+		//System.out.println("W= "+background.getIconWidth() + "\tH= " +background.getIconHeight());
 		//eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440   ,600));
 		JLabel back1 = new JLabel(background);
 		JLabel back2 = new JLabel(background);

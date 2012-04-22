@@ -42,7 +42,7 @@ public class Game {
 			this.nextGame.setTeam2(winner);
 		// for calculating best possible combination of weights
 		if(this.winner.getRoundsPlayed() >= (Global.maxRound-this.getRound())+1){
-			Global.numberOfCorrectGames++;
+			//Global.numberOfCorrectGames++;
 			//System.out.println("round "+getRound()+" winner = " +winner);
 			//Global.currentScore += this.getValue();
 		}
@@ -268,5 +268,75 @@ public class Game {
 		return (int) (320/(Math.pow(2,this.getRound())));
 	}
 
+	public void drawChamp2(Graphics g, int x, int y, int height, int width, int lineLength){
+		setResultColor(team1, this.getRound(), g);
+		setResultColor(team2, this.getRound(), g);	
+		g.setColor(Color.BLACK);
+		setResultColor(this.getWinner(), this.getRound(), g);
+		
+	}
+
+
+	/**
+	 * draws the right half of the bracket
+	 * @param g the graphics page to draw on
+	 * @param x	the x-coordinate
+	 * @param y	the y coordinate
+	 * @param height the height
+	 * @param width the width
+	 * @param spacing NOT USED
+	 * @param lineLength how long (LEFT TO RIGHT) the lines are
+	 */
+	public void drawGame2(Graphics g, int x, int y, int height, int width, int spacing, int lineLength){ 
+		//right half of bracket
+		if(this.team1 != null){
+			setResultColor(team1, this.getRound(), g);
+		}
+
+		if(this.team2 != null){
+			setResultColor(team2, this.getRound(), g);
+		}
+		g.setColor(Color.BLACK);
+		int round = Global.maxRound - this.getRound() -2; // should be a 1. the two allows it to fit on the screen
+		if(this.prevGame2 != null){	
+			prevGame2.drawGame2(g, x+width+lineLength, y+((height)*((int)Math.pow(2, round))) , height, width, spacing, lineLength);
+		}
+		if(this.prevGame1 != null){
+			prevGame1.drawGame2(g, x+width+lineLength, y-((height)*((int)Math.pow(2, round))), height, width, spacing, lineLength);
+		}
+	}
+
+	/**
+	 * draws the left half of the bracket
+	 * @param g the graphics page to draw on
+	 * @param x	the x-coordinate
+	 * @param y	the y coordinate
+	 * @param height the height
+	 * @param width the width
+	 * @param spacing NOT USED
+	 * @param lineLength how long (LEFT TO RIGHT) the lines are
+	 */
+	public void drawGameLeft2(Graphics g, int x, int y, int height, int width, int spacing, int lineLength){ 
+		if(this.team1 != null){
+			setResultColor(team1, this.getRound(), g);
+		}
+
+		if(this.team2 != null){
+			setResultColor(team2, this.getRound(), g);	
+		}
+		g.setColor(Color.BLACK);
+		int round = Global.maxRound - this.getRound() -2; // should be a 1. the two allows it to fit on the screen
+		if(this.prevGame2 != null){
+			prevGame2.drawGameLeft2(g, x-width-lineLength, y+(spacing+(height)*((int)Math.pow(2, round))) , height, width, spacing, lineLength);
+		}
+
+		if(this.prevGame1 != null){
+			prevGame1.drawGameLeft2(g, x-width-lineLength, y-(spacing+(height)*((int)Math.pow(2, round))), height, width, spacing, lineLength);
+		}
+
+	}
+
+	
+	
 }
 
