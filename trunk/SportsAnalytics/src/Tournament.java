@@ -30,7 +30,7 @@ public class Tournament extends JApplet{
 		bgLeft = new ImageIcon();
 		bgRight = new ImageIcon();
 		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
-		bgLeft.setImage(getImage(getCodeBase(), "gt1.jpg"));
+		bgLeft.setImage(getImage(getCodeBase(), "gt5.jpg"));
 		bgRight.setImage(getImage(getCodeBase(), "gt2.jpg"));
 		
 		//file = new File();
