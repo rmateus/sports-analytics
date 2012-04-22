@@ -63,7 +63,6 @@ public class BracketGUI extends JPanel{
 											Global.ppgWeight =h;
 											for (int j = 0; j <= 100; j+=50){
 												Global.turnoversWeight =j;
-												//playTournament2();
 												generateBracket2(this.getGraphics());
 												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
 													Global.bestNumberOfCorrectGames = Global.numberOfCorrectGames;
