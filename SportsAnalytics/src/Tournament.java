@@ -13,8 +13,8 @@ public class Tournament extends JApplet{
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainPanel = new JPanel(cardlayout);
 	private ImageIcon pic;
-	private ImageIcon background; 
-	private File file;
+	private ImageIcon bgLeft; 
+	private ImageIcon bgRight; 
 
 	public void init(){ 
 		resize(1400,850);
@@ -27,9 +27,11 @@ public class Tournament extends JApplet{
 
 	private void createGUI() {
 		pic = new ImageIcon();
-		background = new ImageIcon();
+		bgLeft = new ImageIcon();
+		bgRight = new ImageIcon();
 		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
-		background.setImage(getImage(getCodeBase(), "background.jpg"));
+		bgLeft.setImage(getImage(getCodeBase(), "gt1.jpg"));
+		bgRight.setImage(getImage(getCodeBase(), "gt2.jpg"));
 		
 		//file = new File();
 		/*URL excel;
@@ -56,15 +58,16 @@ public class Tournament extends JApplet{
 		//westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440 ,600));
 		//System.out.println("W= "+background.getIconWidth() + "\tH= " +background.getIconHeight());
 		//eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440   ,600));
-		JLabel back1 = new JLabel(background);
-		JLabel back2 = new JLabel(background);
-		JLabel back4 = new JLabel(background);
-		JLabel back3 = new JLabel(background);
+		//JLabel back1 = new JLabel(background);
+		//JLabel back2 = new JLabel(background);
+		//JLabel back4 = new JLabel(background);
+		JLabel back3 = new JLabel(bgRight);
+		JLabel back4 = new JLabel(bgLeft);
 		
-		eastPanel.add(back1);
-		eastPanel.add(back2);
+		//eastPanel.add(back1);
+		eastPanel.add(back4);
 		westPanel.add(back3);
-		westPanel.add(back4);
+		//westPanel.add(back4);
 		
 		System.out.println(eastPanel.getBounds());
 		eastPanel.setBackground(Color.BLACK);
