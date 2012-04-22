@@ -1,6 +1,5 @@
 
 import java.awt.*;
-import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
 import javax.swing.JLabel;
@@ -17,7 +16,7 @@ public class Tournament extends JApplet{
 	private ImageIcon bgRight; 
 
 	public void init(){ 
-		resize(1400,850);
+		resize(1400,880);
 		createGUI();
 	} 
 
