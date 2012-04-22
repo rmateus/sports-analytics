@@ -54,7 +54,7 @@ public class StartScreen extends JPanel {
 	/**
 	 * Create the frame.
 	 */
-	public StartScreen(final JPanel jp, ImageIcon pic, Image background) {
+	public StartScreen(final JPanel jp, ImageIcon pic){//, Image background) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 600);
 		setPreferredSize(new Dimension(440, 600));
@@ -321,10 +321,20 @@ public class StartScreen extends JPanel {
 		JButton help = new JButton("Help");
 		help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null,"Adjust each slider based on how important you think each stat is to \n" +
-						                           "a team's success, the left side of the slider meaning not important\n" +
-						                           "and the right side meaning extremely important. Then, simply select\n" +
-						                           "the season you want to simulate and click the Simulation button.");		
+				JOptionPane.showMessageDialog(null,"1.  Adjust each slider based on how important you think each stat is to\n" +
+												   "      a team's success. Adjust the slider to the left if you think the stat\n" +
+												   "      is not important, and adjust the slider to the right if you think the\n" +
+												   "      stat is very important.\n" +	
+                        						   "2.  Select the season you want to examine.\n" +
+                        						   "3.  Click the Simulation button to see your bracket.");		
+				
+				
+				
+				//JOptionPane.showMessageDialog(null,"Adjust each slider based on how important you think each stat is to\n" +
+				//		                           "a team's success. Adjust the slider to the left if you think the stat\n" +
+				//		                           "is not important, and adjust the slider to the right if you think the\n" +
+				//								   "stat is very important. ");		
+				//		                           "the season you want to simulate and click the Simulation button.");		
 			}
 		});
 		help.setFont(new Font("Tahoma", Font.PLAIN, 12));

@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JApplet;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -12,7 +13,7 @@ public class Tournament extends JApplet{
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainPanel = new JPanel(cardlayout);
 	private ImageIcon pic;
-	private Image background; 
+	private ImageIcon background; 
 	private File file;
 
 	public void init(){ 
@@ -26,8 +27,9 @@ public class Tournament extends JApplet{
 
 	private void createGUI() {
 		pic = new ImageIcon();
+		background = new ImageIcon();
 		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
-		background = getImage(getCodeBase(), "bgp.jpg");
+		background.setImage(getImage(getCodeBase(), "background.jpg"));
 		
 		//file = new File();
 		/*URL excel;
@@ -41,7 +43,7 @@ public class Tournament extends JApplet{
 */
 		
 		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
-		StartScreen ss = new StartScreen(mainPanel, pic, background);
+		StartScreen ss = new StartScreen(mainPanel, pic);//, background);
 		
 		JPanel test = new JPanel();
 		test.setLayout(new BorderLayout());
@@ -54,8 +56,19 @@ public class Tournament extends JApplet{
 		//westPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440 ,600));
 		//System.out.println(this.getBounds());
 		//eastPanel.setPreferredSize(new Dimension((this.getWidth())/2 - 440   ,600));
-		eastPanel.setBackground(Color.ORANGE);
-		westPanel.setBackground(Color.ORANGE);
+		JLabel back1 = new JLabel(background);
+		JLabel back2 = new JLabel(background);
+		JLabel back4 = new JLabel(background);
+		JLabel back3 = new JLabel(background);
+		
+		eastPanel.add(back1);
+		eastPanel.add(back2);
+		westPanel.add(back3);
+		westPanel.add(back4);
+		
+		System.out.println(eastPanel.getBounds());
+		eastPanel.setBackground(Color.BLACK);
+		westPanel.setBackground(Color.BLACK);
 		
 		
 		test.add(BorderLayout.EAST,eastPanel);
@@ -74,8 +87,8 @@ public class Tournament extends JApplet{
 		getContentPane().add(mainPanel);
 		
 		this.setPreferredSize(new Dimension(2000,2000));
-		setBackground(Color.ORANGE);
-		setForeground(Color.BLUE);
+		//setBackground(Color.ORANGE);
+		//setForeground(Color.BLUE);
 		this.setMaximumSize(getPreferredSize()); // prevent growth
 		this.setMinimumSize(getPreferredSize()); // prevent shrink
 	
