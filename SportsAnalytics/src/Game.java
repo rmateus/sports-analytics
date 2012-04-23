@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 
@@ -85,8 +86,9 @@ public class Game {
 			g.setColor(Color.RED);
 		}
 		else {
-			Global.numberOfCorrectGames++ ; //TODO un comment when not running algorithm
-			g.setColor(new Color(10,240,10));
+			Global.numberOfCorrectGames++ ;
+			Global.currentScore+=getValue();
+			g.setColor(new Color(10,150,10));
 		}
 		
 	}

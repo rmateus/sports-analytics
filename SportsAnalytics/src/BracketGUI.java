@@ -1,15 +1,13 @@
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -32,6 +30,8 @@ public class BracketGUI extends JPanel{
 	}
 
 	public void paint(Graphics g){
+		//Global.season = 2011;
+		g.setFont(new Font("Tahoma", Font.BOLD, 14));
 		clear(g);
 		//findBestCombo();
 		//findBestWeightedCombo();
@@ -46,25 +46,26 @@ public class BracketGUI extends JPanel{
 		initArray();
 		setMaxes();
 
-		for (int a = 0; a <= 100; a+=10){
+
+		for (int a = 0; a <= 100; a+=50){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b+=10){
+			for(int b = 0; b <= 100; b+=50){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c+=10){
+				for (int c = 0; c <= 100; c+=50){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d+=10){
+					for (int d = 0; d <= 100; d+=50){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e+=10){
+						for (int e = 0; e <= 100; e+=50){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f+=10){
+							for (int f = 0; f <= 100; f+=50){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g+=10){
+								for (int g = 0; g <= 100; g+=50){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h+=10){
+									for (int h = 0; h <= 100; h+=50){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i+=10){
-											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j+=10){
+										for (int i = 0; i <= 100; i+=50){
+											Global.ppgWeight =i;
+											for (int j = 0; j <= 100; j+=50){
 												Global.turnoversWeight =j;
 												generateBracket2(this.getGraphics());
 												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
@@ -154,10 +155,10 @@ public class BracketGUI extends JPanel{
 									for (int h = 0; h <= 100; h+=50){
 										Global.blocksWeight = h;
 										for (int i = 0; i <= 100; i+=50){
-											Global.ppgWeight =h;
+											Global.ppgWeight =i;
 											for (int j = 0; j <= 100; j+=50){
 												Global.turnoversWeight =j;
-												playTournament2();
+												generateBracket2(this.getGraphics());
 												if (Global.currentScore > Global.bestScore){
 													Global.bestScore = Global.currentScore;
 													Global.bestCombination[0] = a;
@@ -170,7 +171,18 @@ public class BracketGUI extends JPanel{
 													Global.bestCombination[7] = h;
 													Global.bestCombination[8] = i;
 													Global.bestCombination[9] = j;
-													System.out.println("new best!");
+													System.out.println("new best!  = " + Global.bestScore);
+													System.out.println(Global.bestCombination[0]+", "+
+															Global.bestCombination[1]+", "+
+															Global.bestCombination[2]+", "+
+															Global.bestCombination[3]+", "+
+															Global.bestCombination[4]+", "+
+															Global.bestCombination[5]+", "+
+															Global.bestCombination[6]+", "+
+															Global.bestCombination[7]+", "+
+															Global.bestCombination[8]+", "+
+															Global.bestCombination[9]);
+
 												}
 											}
 										}
@@ -195,21 +207,7 @@ public class BracketGUI extends JPanel{
 
 	}
 
-	/*
-	public void initWeights(){
-		Global.seedWeight = 100;
-		Global.winPercentageWeight = 100;
-		Global.fieldGoalPercentageWeight = 100;
-		Global.threePointsPercentageWeight = 100;
-		Global.offensiveRebsWeight = 100;
-		Global.defensiveRebsWeight = 100;
-		Global.stealsWeight = 100;
-		Global.blocksWeight = 100;
-		Global.ppgWeight = 100;
-		Global.turnoversWeight = 100;
 
-	}
-	 */
 	/**
 	 * Sets up and plays the tournament
 	 * @param g Graphics page to draw on
@@ -244,18 +242,18 @@ public class BracketGUI extends JPanel{
 		semi1.drawGame(g, appW/2 + lineLength + rW , appH/2, rH, rW, spacing, lineLength);
 		semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
-		
-		
-		
-		
+
+
+
+
 		if (back!=null){
 			remove(back);
 		}
-		
+
 
 		//back = new JButton("BACK");
 		back = new JButton(Global.numberOfCorrectGames + "");
-		//back = new JButton(Global.bestScore + "");
+		//back = new JButton(Global.currentScore + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -300,134 +298,135 @@ public class BracketGUI extends JPanel{
 		semi2.drawGameLeft2(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp2(g, appW/2 - rW/2, appH/2, rH, rW, rW);
 	}
-	
 
 
-/**
- * 
- */
-public void setMaxes(){
-	Global.seedMax = 16;
-	Global.winPercentageMax = 0;
-	Global.fieldGoalPercentageMax = 0;
-	Global.threePointsPercentageMax = 0;
-	Global.offensiveRebsMax = 0;
-	Global.defensiveRebsMax = 0;
-	Global.stealsMax = 0;
-	Global.blocksMax = 0;
-	Global.ppgMax = 0;
-	Global.turnoversMax = 0;
 
-	for (int i =0; i < 64; i++){
+	/**
+	 * 
+	 */
+	public void setMaxes(){
+		Global.seedMax = 16;
+		Global.winPercentageMax = 0;
+		Global.fieldGoalPercentageMax = 0;
+		Global.threePointsPercentageMax = 0;
+		Global.offensiveRebsMax = 0;
+		Global.defensiveRebsMax = 0;
+		Global.stealsMax = 0;
+		Global.blocksMax = 0;
+		Global.ppgMax = 0;
+		Global.turnoversMax = 0;
 
-		if (teamArray[i].getWinPercentage() > Global.winPercentageMax){
-			Global.winPercentageMax = teamArray[i].getWinPercentage();
+		for (int i =0; i < 64; i++){
+
+			if (teamArray[i].getWinPercentage() > Global.winPercentageMax){
+				Global.winPercentageMax = teamArray[i].getWinPercentage();
+			}
+			if (teamArray[i].getFieldGoalPercentage() > Global.fieldGoalPercentageMax){
+				Global.fieldGoalPercentageMax = teamArray[i].getFieldGoalPercentage();
+			}
+			if (teamArray[i].getThreePointsPercentage() > Global.threePointsPercentageMax){
+				Global.threePointsPercentageMax = teamArray[i].getThreePointsPercentage();
+			}
+			if (teamArray[i].getOffensiveRebs() > Global.offensiveRebsMax){
+				Global.offensiveRebsMax = teamArray[i].getOffensiveRebs();
+			}
+			if (teamArray[i].getDefensiveRebs() > Global.defensiveRebsMax){
+				Global.defensiveRebsMax = teamArray[i].getDefensiveRebs();
+			}
+			if (teamArray[i].getSteals() > Global.stealsMax){
+				Global.stealsMax = teamArray[i].getSteals();
+			}
+			if (teamArray[i].getBlocks() > Global.blocksMax){
+				Global.blocksMax = teamArray[i].getBlocks();
+			}
+			if (teamArray[i].getPpg() > Global.ppgMax){
+				Global.ppgMax = teamArray[i].getPpg();
+			}
+			if (teamArray[i].getTurnovers() > Global.turnoversMax){
+				Global.turnoversMax = teamArray[i].getTurnovers();
+			}
 		}
-		if (teamArray[i].getFieldGoalPercentage() > Global.fieldGoalPercentageMax){
-			Global.fieldGoalPercentageMax = teamArray[i].getFieldGoalPercentage();
-		}
-		if (teamArray[i].getThreePointsPercentage() > Global.threePointsPercentageMax){
-			Global.threePointsPercentageMax = teamArray[i].getThreePointsPercentage();
-		}
-		if (teamArray[i].getOffensiveRebs() > Global.offensiveRebsMax){
-			Global.offensiveRebsMax = teamArray[i].getOffensiveRebs();
-		}
-		if (teamArray[i].getDefensiveRebs() > Global.defensiveRebsMax){
-			Global.defensiveRebsMax = teamArray[i].getDefensiveRebs();
-		}
-		if (teamArray[i].getSteals() > Global.stealsMax){
-			Global.stealsMax = teamArray[i].getSteals();
-		}
-		if (teamArray[i].getBlocks() > Global.blocksMax){
-			Global.blocksMax = teamArray[i].getBlocks();
-		}
-		if (teamArray[i].getPpg() > Global.ppgMax){
-			Global.ppgMax = teamArray[i].getPpg();
-		}
-		if (teamArray[i].getTurnovers() > Global.turnoversMax){
-			Global.turnoversMax = teamArray[i].getTurnovers();
+
+
+	}
+
+	/**
+	 * Recursively creates and links all 
+	 * the Games in the Tournament
+	 * 
+	 * @param teams
+	 * @return returns the championship game.
+	 */
+	public Game InitializeTournament(Team[] teams)
+	{
+		Game championship = new Game(null);
+		championship.createGames(teams);
+		return championship;
+	}
+
+	/**
+	 * ranks the teams
+	 * @param teams
+	 */
+	public void rankTeams(){
+		for (int i=0; i < teamArray.length; i++){
+			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight))+
+					((teamArray[i].getWinPercentage()*Global.winPercentageWeight)/Global.winPercentageMax)+
+					((teamArray[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)/Global.fieldGoalPercentageMax)+
+					((teamArray[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)/Global.threePointsPercentageMax)+
+					((teamArray[i].getOffensiveRebs()*Global.offensiveRebsWeight)/Global.offensiveRebsMax)+
+					((teamArray[i].getDefensiveRebs()*Global.defensiveRebsWeight)/Global.defensiveRebsMax)+
+					((teamArray[i].getSteals()*Global.stealsWeight)/Global.stealsMax)+
+					((teamArray[i].getBlocks()*Global.blocksWeight)/Global.blocksMax)+
+					((teamArray[i].getPpg()*Global.ppgWeight)/Global.ppgMax)+
+					((Global.turnoversMax - teamArray[i].getTurnovers())*Global.turnoversWeight)/Global.turnoversMax);
 		}
 	}
 
 
-}
 
-/**
- * Recursively creates and links all 
- * the Games in the Tournament
- * 
- * @param teams
- * @return returns the championship game.
- */
-public Game InitializeTournament(Team[] teams)
-{
-	Game championship = new Game(null);
-	championship.createGames(teams);
-	return championship;
-}
-
-/**
- * ranks the teams
- * @param teams
- */
-public void rankTeams(){
-	for (int i=0; i < teamArray.length; i++){
-		teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight))+
-				((teamArray[i].getWinPercentage()*Global.winPercentageWeight)/Global.winPercentageMax)+
-				((teamArray[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)/Global.fieldGoalPercentageMax)+
-				((teamArray[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)/Global.threePointsPercentageMax)+
-				((teamArray[i].getOffensiveRebs()*Global.offensiveRebsWeight)/Global.offensiveRebsMax)+
-				((teamArray[i].getDefensiveRebs()*Global.defensiveRebsWeight)/Global.defensiveRebsMax)+
-				((teamArray[i].getSteals()*Global.stealsWeight)/Global.stealsMax)+
-				((teamArray[i].getBlocks()*Global.blocksWeight)/Global.blocksMax)+
-				((teamArray[i].getPpg()*Global.ppgWeight)/Global.ppgMax)+
-				((Global.turnoversMax - teamArray[i].getTurnovers())*Global.turnoversWeight)/Global.turnoversMax);
+	public void clear(Graphics g){
+		g.clearRect(0, 0, 2000, 2000);
+		img.paintIcon(this,g,0,0);
 	}
-}
 
+	public void printStats(){
+		for (int i=0; i<teamArray.length;i++){
 
-public void clear(Graphics g){
-	g.clearRect(0, 0, 2000, 2000);
-	img.paintIcon(this,g,0,0);
-}
-
-public void printStats(){
-	for (int i=0; i<teamArray.length;i++){
-
+		}
 	}
-}
 
-public void initArray(){
-	ExcelReader test = new ExcelReader(this);
-	/*if (this.excelFile == null){
+	public void initArray(){
+		ExcelReader test = new ExcelReader(this);
+		/*if (this.excelFile == null){
 			test.setInputFile(new File("SportsAnalyticsProjectStatsData.xls"));
 		}
 		else{
 			test.setInputFile(this.excelFile);
 		}*/
-	this.excelFile = new File("SportsAnalyticsProjectStatsData.xls");
-	test.setInputFile(this.excelFile);
-	try {
-		teamArray = test.read();
-	} catch (IOException e) {
-		e.printStackTrace();
+		this.excelFile = new File("SportsAnalyticsProjectStatsData.xls");
+		test.setInputFile(this.excelFile);
+		try {
+			teamArray = test.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-}
 
-/**
- * getter for TeamArray
- * @return this.TeamArray
- */
-public Team[] getTeamArray(){
-	return this.teamArray;
-}
+	/**
+	 * getter for TeamArray
+	 * @return this.TeamArray
+	 */
+	public Team[] getTeamArray(){
+		return this.teamArray;
+	}
 
-/**
- * sets this.teamArray
- * @param teamArray
- */
-public void setTeamArray(Team[] teamArray){
-	this.teamArray = teamArray;
-}
+	/**
+	 * sets this.teamArray
+	 * @param teamArray
+	 */
+	public void setTeamArray(Team[] teamArray){
+		this.teamArray = teamArray;
+	}
 
 }
