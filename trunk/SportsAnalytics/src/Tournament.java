@@ -14,6 +14,7 @@ public class Tournament extends JApplet{
 	private ImageIcon pic;
 	private ImageIcon bgLeft; 
 	private ImageIcon bgRight; 
+	private ImageIcon tiles; 
 
 	public void init(){ 
 		resize(1400,880);
@@ -28,10 +29,11 @@ public class Tournament extends JApplet{
 		pic = new ImageIcon();
 		bgLeft = new ImageIcon();
 		bgRight = new ImageIcon();
+		tiles = new ImageIcon();
 		pic.setImage(getImage(getCodeBase(), "bgp.jpg"));
 		bgLeft.setImage(getImage(getCodeBase(), "gt5.jpg"));
 		bgRight.setImage(getImage(getCodeBase(), "gt2.jpg"));
-		
+		tiles.setImage(getImage(getCodeBase(), "tiles.jpg"));
 		//file = new File();
 		/*URL excel;
 		try {
@@ -43,7 +45,7 @@ public class Tournament extends JApplet{
 		}
 */
 		
-		BracketGUI b = new BracketGUI(mainPanel/*, file*/);
+		BracketGUI b = new BracketGUI(mainPanel,tiles/*, file*/);
 		StartScreen ss = new StartScreen(mainPanel, pic);//, background);
 		
 		JPanel test = new JPanel();

@@ -86,8 +86,9 @@ public class Game {
 		}
 		else {
 			Global.numberOfCorrectGames++ ; //TODO un comment when not running algorithm
-			g.setColor(Color.GREEN);
+			g.setColor(new Color(10,240,10));
 		}
+		
 	}
 
 	/**

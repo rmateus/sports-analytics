@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,16 +22,18 @@ public class BracketGUI extends JPanel{
 	private JButton back;
 	private final JPanel mainPanel;
 	private File excelFile;
+	private ImageIcon img;
 
-	public BracketGUI(JPanel mainPanel/*, File f*/){
+	public BracketGUI(JPanel mainPanel, ImageIcon img/*, File f*/){
 		this.mainPanel = mainPanel;
+		this.img = img;
 		//this.excelFile = f;
 
 	}
 
 	public void paint(Graphics g){
 		clear(g);
-		findBestCombo();
+		//findBestCombo();
 		//findBestWeightedCombo();
 		generateBracket(g);
 	}
@@ -42,25 +46,25 @@ public class BracketGUI extends JPanel{
 		initArray();
 		setMaxes();
 
-		for (int a = 0; a <= 100; a+=25){
+		for (int a = 0; a <= 100; a+=10){
 			Global.seedWeight = a;
-			for(int b = 0; b <= 100; b+=25){
+			for(int b = 0; b <= 100; b+=10){
 				Global.winPercentageWeight = b;
-				for (int c = 0; c <= 100; c+=25){
+				for (int c = 0; c <= 100; c+=10){
 					Global.fieldGoalPercentageWeight = c;
-					for (int d = 0; d <= 100; d+=25){
+					for (int d = 0; d <= 100; d+=10){
 						Global.threePointsPercentageWeight = d;
-						for (int e = 0; e <= 100; e+=25){
+						for (int e = 0; e <= 100; e+=10){
 							Global.offensiveRebsWeight = e;
-							for (int f = 0; f <= 100; f+=25){
+							for (int f = 0; f <= 100; f+=10){
 								Global.defensiveRebsWeight = f;
-								for (int g = 0; g <= 100; g+=25){
+								for (int g = 0; g <= 100; g+=10){
 									Global.stealsWeight = g;
-									for (int h = 0; h <= 100; h+=25){
+									for (int h = 0; h <= 100; h+=10){
 										Global.blocksWeight = h;
-										for (int i = 0; i <= 100; i+=25){
+										for (int i = 0; i <= 100; i+=10){
 											Global.ppgWeight =h;
-											for (int j = 0; j <= 100; j+=25){
+											for (int j = 0; j <= 100; j+=10){
 												Global.turnoversWeight =j;
 												generateBracket2(this.getGraphics());
 												if (Global.numberOfCorrectGames > Global.bestNumberOfCorrectGames){
@@ -240,6 +244,10 @@ public class BracketGUI extends JPanel{
 		semi1.drawGame(g, appW/2 + lineLength + rW , appH/2, rH, rW, spacing, lineLength);
 		semi2.drawGameLeft(g, appW/2 - lineLength - 2*rW, appH/2, rH, rW, spacing, lineLength);
 		champ.drawChamp(g, appW/2 - rW/2, appH/2, rH, rW, rW);
+		
+		
+		
+		
 		if (back!=null){
 			remove(back);
 		}
@@ -380,6 +388,7 @@ public void rankTeams(){
 
 public void clear(Graphics g){
 	g.clearRect(0, 0, 2000, 2000);
+	img.paintIcon(this,g,0,0);
 }
 
 public void printStats(){
