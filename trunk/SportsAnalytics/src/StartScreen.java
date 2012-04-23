@@ -57,7 +57,7 @@ public class StartScreen extends JPanel {
 	public StartScreen(final JPanel jp, ImageIcon pic){//, Image background) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 440, 600);
-		setPreferredSize(new Dimension(440, 600));
+		setPreferredSize(new Dimension(440, 700));
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(panel);
 		setLayout(null);
@@ -365,7 +365,15 @@ public class StartScreen extends JPanel {
 		reset.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		reset.setBounds(366, 185, 74, 23);
 		add(reset);
+		
+		JLabel lblCreatedByStephen = new JLabel("Created by Stephen Csukas, Jeff Pansini,  Caleb Kirksey, ");
+		lblCreatedByStephen.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCreatedByStephen.setBounds(20, 588, 387, 56);
+		add(lblCreatedByStephen);
+		
+		JLabel lblDerekMillerAnd = new JLabel("Derek Miller, and Brandon Palmer");
+		lblDerekMillerAnd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDerekMillerAnd.setBounds(20, 610, 387, 56);
+		add(lblDerekMillerAnd);
 	}
-
-
 }
