@@ -43,9 +43,20 @@ public class ExcelReader {
 					j=0;
 				}
 			}
-			else {
+			else if (Global.season == 2011){
 				for (i=2; i< 66; i++){
 					teamArr[i-2] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+8,i).getContents()), Double.parseDouble(sheet.getCell(j+9,i).getContents()),
+							Double.parseDouble(sheet.getCell(j+10,i).getContents()), Integer.parseInt(sheet.getCell(j+11,i).getContents()));
+					j=0;
+				}
+			}
+			else {
+				for (i=132; i< 196; i++){
+					teamArr[i-132] = new Team(sheet.getCell(j,i).getContents(), Integer.parseInt(sheet.getCell(j+1,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+2,i).getContents()), Double.parseDouble(sheet.getCell(j+3,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+4,i).getContents()), Double.parseDouble(sheet.getCell(j+5,i).getContents()),
 							Double.parseDouble(sheet.getCell(j+6,i).getContents()), Double.parseDouble(sheet.getCell(j+7,i).getContents()),
