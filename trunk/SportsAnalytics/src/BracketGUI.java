@@ -1,4 +1,5 @@
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -248,10 +249,14 @@ public class BracketGUI extends JPanel{
 		if (back!=null){
 			remove(back);
 		}
-
-
-		//back = new JButton("BACK");
-		back = new JButton(Global.numberOfCorrectGames + "");
+		g.setFont(new Font("Tahoma", Font.BOLD, 22));
+		g.setColor(new Color(0,0,128));
+		g.drawString(""+Global.season, appW/2-30, (appH)/5);
+		g.drawString("Correct Games: "+Global.numberOfCorrectGames, appW/2-100, (appH*2)/3);
+		//g.drawString("Total Score: "+Global.currentScore, appW/2-100, (appH*2)/3);
+		g.drawString("Percent Correct: " + 100*Global.numberOfCorrectGames/64.0, appW/2-120, (appH*2)/3+50);
+		back = new JButton("BACK");
+		//back = new JButton(Global.numberOfCorrectGames + "");
 		//back = new JButton(Global.currentScore + "");
 		back.setIgnoreRepaint(true);
 		back.addActionListener(new ActionListener() {
@@ -261,7 +266,8 @@ public class BracketGUI extends JPanel{
 				cl.next(mainPanel);
 			}
 		});
-		back.setBounds(appW/2 - rW/2, appH-100, rW, rH);
+		back.setFont(new Font("Tahoma", Font.BOLD, 22));
+		back.setBounds(appW/2 - rW, appH-100, rW*2, rH*2);
 		this.add(back);
 		back.setVisible(true);
 		back.requestFocusInWindow();
@@ -369,7 +375,7 @@ public class BracketGUI extends JPanel{
 	 */
 	public void rankTeams(){
 		for (int i=0; i < teamArray.length; i++){
-			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight))+
+			teamArray[i].setOverallScore((((Global.seedMax - teamArray[i].getSeed())*Global.seedWeight)/Global.maxSeed)+
 					((teamArray[i].getWinPercentage()*Global.winPercentageWeight)/Global.winPercentageMax)+
 					((teamArray[i].getFieldGoalPercentage()*Global.fieldGoalPercentageWeight)/Global.fieldGoalPercentageMax)+
 					((teamArray[i].getThreePointsPercentage()*Global.threePointsPercentageWeight)/Global.threePointsPercentageMax)+

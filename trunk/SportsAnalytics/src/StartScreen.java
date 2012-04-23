@@ -349,6 +349,7 @@ public class StartScreen extends JPanel {
 				//JOptionPane.showMessageDialog(null,"Created by Stephen Csukas, Derek Miller, Jeff Pansisi,o\n" +
 				//								   " Brandon Palmer, and Caleb Kirksey. [will add more to this]");
 
+				
 				seed.setValue(0);
 				winPercentage.setValue(0);
 				pointsPerGame.setValue(0);
