@@ -30,7 +30,6 @@ public class BracketGUI extends JPanel{
 	}
 
 	public void paint(Graphics g){
-		//Global.season = 2011;
 		g.setFont(new Font("Tahoma", Font.BOLD, 14));
 		clear(g);
 		//findBestCombo();

@@ -6,7 +6,7 @@ public class Global {
 	public static int maxRound = 5; 
 	public static int maxSeed = 16;	
 	public static int sliderTotal = 100;
-	public static int season = 2011;
+	public static int season = 2012;
 	public static int numberOfGames = 64; // counting the winner rectangle as a game
 	public static int numberOfCorrectGames;	//
 	public static int bestNumberOfCorrectGames;
